@@ -1,4 +1,4 @@
-@use "variables" as v;
+@use "../abstracts/variables" as v;
 
 /* Globals */
 html {
@@ -12,6 +12,7 @@ html {
 }
 
 body {
+  background-color: v.$light-grey;
   font-family: v.$main-font;
   font-size: 1.6rem;
 }
