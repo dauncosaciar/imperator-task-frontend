@@ -11,5 +11,8 @@ export default defineConfig({
         sourceMapIncludeSources: true
       }
     }
+  },
+  server: {
+    port: 5555
   }
 });
