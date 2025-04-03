@@ -1,0 +1,25 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Header */
+.header {
+  background-color: v.$white;
+  padding: 2rem;
+  height: 8.8rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    height: 100%;
+
+    @include m.tablet {
+      justify-content: flex-end;
+    }
+  }
+}

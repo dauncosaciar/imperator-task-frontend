@@ -10,11 +10,26 @@ html {
 *::after {
   box-sizing: inherit;
 }
+html,
+body {
+  background-color: v.$white;
+}
 
 body {
-  background-color: v.$light-grey;
+  color: v.$black;
   font-family: v.$main-font;
-  font-size: 1.6rem;
+  font-size: v.$default-font-size;
+}
+
+/* Custom text selection color */
+::-moz-selection {
+  /* Code for Firefox */
+  color: v.$white;
+  background: v.$primary;
+}
+::selection {
+  color: v.$white;
+  background: v.$primary;
 }
 
 p {
@@ -49,4 +64,8 @@ h2 {
 }
 h3 {
   font-size: 3.2rem;
+}
+
+button {
+  cursor: pointer;
 }

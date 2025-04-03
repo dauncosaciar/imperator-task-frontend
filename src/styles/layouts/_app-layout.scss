@@ -1,0 +1,39 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* App Layout */
+.app-layout {
+  display: flex;
+
+  &__sections {
+    padding: 0 1rem 1rem;
+    min-height: 100vh;
+    width: 100%;
+
+    @include m.tablet {
+      padding: 0 2rem 2rem;
+    }
+  }
+
+  &__frame {
+    display: flex;
+    margin-top: 9rem;
+    min-height: calc(100% - 11rem);
+
+    @include m.tablet {
+      margin-left: v.$length;
+    }
+  }
+
+  &__content {
+    background-color: v.$light-grey;
+    border-radius: 2rem;
+    padding: 1rem;
+    overflow: hidden;
+    width: 100%;
+
+    @include m.tablet {
+      padding: 3rem;
+    }
+  }
+}

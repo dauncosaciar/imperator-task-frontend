@@ -1,0 +1,10 @@
+@use "@/styles/abstracts/mixins" as m;
+
+/* Logo */
+.logo {
+  max-width: 15rem;
+
+  @include m.phone {
+    max-width: 20rem;
+  }
+}

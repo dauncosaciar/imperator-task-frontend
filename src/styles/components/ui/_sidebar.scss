@@ -1,0 +1,11 @@
+@use "@/styles/abstracts/variables" as v;
+
+/* Sidebar */
+.chakra-drawer__content {
+  background-color: v.$white;
+  font-size: v.$default-font-size;
+  box-shadow: none;
+}
+
+.sidebar {
+}
