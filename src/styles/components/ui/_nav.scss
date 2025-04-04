@@ -1,0 +1,36 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Nav */
+.nav {
+  padding: 2rem 0;
+
+  @include m.tablet {
+    padding: 4rem 0 2rem;
+  }
+
+  &__link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.1rem 1.6rem;
+    border-radius: 1.2rem;
+    margin-bottom: 0.4rem;
+    text-align: center;
+    transition: background-color 0.3s ease;
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      background-color: color.adjust(v.$primary, $lightness: 65%);
+    }
+
+    &.active {
+      background-color: v.$primary;
+      color: v.$white;
+    }
+  }
+}
