@@ -11,26 +11,6 @@
   }
 
   &__link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.1rem 1.6rem;
-    border-radius: 1.2rem;
-    margin-bottom: 0.4rem;
-    text-align: center;
-    transition: background-color 0.3s ease;
-
-    &:last-of-type {
-      margin-bottom: 0;
-    }
-
-    &:hover {
-      background-color: color.adjust(v.$primary, $lightness: 65%);
-    }
-
-    &.active {
-      background-color: v.$primary;
-      color: v.$white;
-    }
+    @include m.nav-link(v.$primary);
   }
 }

@@ -1,5 +1,6 @@
-import { AlignLeft, Ellipsis } from "lucide-react";
+import { AlignLeft } from "lucide-react";
 import Logo from "./Logo";
+import AvatarMenu from "./AvatarMenu";
 
 type HeaderProps = {
   isMobile: boolean;
@@ -20,7 +21,7 @@ export default function Header({ isMobile, onOpen }: HeaderProps) {
         )}
 
         <button className="header__button" type="button">
-          <Ellipsis />
+          <AvatarMenu />
         </button>
       </div>
     </header>

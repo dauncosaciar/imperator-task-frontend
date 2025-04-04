@@ -19,25 +19,47 @@
   }
 }
 
-@mixin button($bg-color, $text-color) {
-  background-color: $bg-color;
+@mixin link {
+  cursor: pointer;
   padding: 1.2rem 1.6rem;
   border-radius: 1.2rem;
   display: flex;
   width: 100%;
   text-align: center;
-  color: $text-color;
-  text-decoration: none;
   transition: background-color 0.3s ease;
+}
+
+@mixin nav-link($hover-color) {
+  @include link;
+
+  color: v.$black;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &:hover {
+    background-color: color.adjust($hover-color, $lightness: 65%);
+  }
+
+  &.active {
+    background-color: v.$primary;
+    color: v.$white;
+  }
+}
+
+@mixin button($background-color, $text-color) {
+  @include link;
+
+  color: $text-color;
   border: none;
 
   &:hover {
-    cursor: pointer;
-    background-color: color.adjust($bg-color, $lightness: -10%);
-  }
-
-  @include tablet {
-    width: auto;
+    background-color: color.adjust($background-color, $lightness: -10%);
   }
 }
 

@@ -1,0 +1,77 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Avatar Menu */
+.chakra-menu__positioner {
+  width: 95%;
+
+  @include m.tablet {
+    width: 30rem;
+  }
+}
+.chakra-menu__content {
+  background-color: v.$white;
+  border-radius: 1.2rem;
+  border: 1px solid v.$light-grey;
+  color: v.$black;
+  font-size: 1.6rem;
+  width: 100%;
+  padding: 2rem 1rem;
+  box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+
+  @include m.tablet {
+    padding: 2rem;
+  }
+}
+
+.avatar-menu {
+  &__info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid v.$grey;
+  }
+
+  &__image {
+    flex-basis: 5rem;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__user {
+    &-name {
+      font-weight: 700;
+    }
+
+    &-email {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+
+    &-link {
+      @include m.nav-link(v.$primary);
+    }
+  }
+}
+
+.app-avatar {
+  @include m.tablet {
+    width: 3.5rem;
+    margin-right: 3rem;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
