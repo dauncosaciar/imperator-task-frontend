@@ -1,6 +1,7 @@
 @use "sass:color";
 @use "variables" as v;
 
+// Media queries sizes
 @mixin phone {
   @media (min-width: v.$phone) {
     @content;
@@ -19,11 +20,14 @@
   }
 }
 
+// Links and buttons
 @mixin link {
   cursor: pointer;
   padding: 1.2rem 1.6rem;
   border-radius: 1.2rem;
   display: flex;
+  align-items: center;
+  gap: 1rem;
   width: 100%;
   outline: 0;
   text-align: center;
@@ -34,9 +38,6 @@
   @include link;
 
   color: v.$black;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
   text-decoration: none;
 
   &:last-of-type {
@@ -53,17 +54,37 @@
   }
 }
 
-@mixin button($background-color, $text-color) {
+@mixin button($background-color, $text-color, $icon-color) {
   @include link;
 
+  background-color: $background-color;
   color: $text-color;
   border: none;
 
   &:hover {
     background-color: color.adjust($background-color, $lightness: -10%);
   }
+
+  svg {
+    color: $icon-color;
+  }
 }
 
+// Headings and texts
+@mixin heading-with-border($text-color, $border-color) {
+  border-bottom: 2px solid $border-color;
+  color: $text-color;
+  padding-bottom: 2rem;
+  font-family: v.$heading-font;
+  font-weight: 700;
+}
+
+@mixin intro-text {
+  font-size: 2rem;
+  font-weight: 300;
+}
+
+// CSS grids
 @mixin grid($columns, $spacing) {
   display: grid;
   gap: $spacing;
