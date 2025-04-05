@@ -44,13 +44,9 @@
     margin-bottom: 0;
   }
 
-  &:hover {
-    background-color: color.adjust($hover-color, $lightness: 65%);
-  }
-
+  &:hover,
   &.active {
-    background-color: v.$primary;
-    color: v.$white;
+    background-color: color.adjust($hover-color, $lightness: 65%);
   }
 }
 
