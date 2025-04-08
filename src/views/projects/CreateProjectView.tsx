@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
-import { Undo2 } from "lucide-react";
+import { useForm } from "react-hook-form";
+import { Plus, Undo2 } from "lucide-react";
+import ProjectForm from "@/components/projects/ProjectForm";
+import Form from "@/components/form/Form";
 
 export default function CreateProjectView() {
+  const initialValues = {
+    projectName: "",
+    clientName: "",
+    description: ""
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ defaultValues: initialValues });
+
+  const handleForm = data => {
+    console.log("data:", data);
+  };
+
   return (
     <div className="create-project-view">
       <h1 className="create-project-view__heading">Crear Proyecto</h1>
@@ -11,10 +30,29 @@ export default function CreateProjectView() {
 
       <nav className="create-project-view__nav">
         <Link className="create-project-view__nav-link" to="/">
-          <Undo2 />
-          Volver a Mis Proyectos
+          <Undo2 /> Volver a Mis Proyectos
         </Link>
       </nav>
+
+      <div className="create-project-view__content">
+        {/* <form className="form" onSubmit={handleSubmit(handleForm)} noValidate>
+          <ProjectForm register={register} errors={errors} />
+
+          <button className="form__submit" type="submit">
+            <Plus /> Crear Proyecto
+          </button>
+        </form> */}
+
+        <Form
+          handleSubmit={handleSubmit}
+          fnSubmit={handleForm}
+          InnerForm={ProjectForm}
+          register={register}
+          errors={errors}
+          submitIcon={Plus}
+          submitText="Crear Proyecto"
+        />
+      </div>
     </div>
   );
 }
