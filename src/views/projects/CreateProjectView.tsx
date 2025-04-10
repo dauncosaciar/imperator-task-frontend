@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Plus, Undo2 } from "lucide-react";
+import { ProjectFormData } from "@/types";
 import ProjectForm from "@/components/projects/ProjectForm";
 import Form from "@/components/form/Form";
 
 export default function CreateProjectView() {
-  const initialValues = {
+  const initialValues: ProjectFormData = {
     projectName: "",
     clientName: "",
     description: ""
@@ -17,7 +18,7 @@ export default function CreateProjectView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = data => {
+  const handleForm = (data: ProjectFormData) => {
     console.log("data:", data);
   };
 
