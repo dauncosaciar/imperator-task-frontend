@@ -1,11 +1,14 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Plus, Undo2 } from "lucide-react";
 import { ProjectFormData } from "@/types";
 import ProjectForm from "@/components/projects/ProjectForm";
 import Form from "@/components/form/Form";
+import { createProject } from "@/api/ProjectApi";
 
 export default function CreateProjectView() {
+  const navigate = useNavigate();
+
   const initialValues: ProjectFormData = {
     projectName: "",
     clientName: "",
@@ -18,8 +21,9 @@ export default function CreateProjectView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = (data: ProjectFormData) => {
-    console.log("data:", data);
+  const handleForm = async (data: ProjectFormData) => {
+    await createProject(data);
+    navigate("/");
   };
 
   return (
