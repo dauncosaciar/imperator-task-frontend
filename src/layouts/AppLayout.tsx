@@ -3,6 +3,7 @@ import { Outlet } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 import Header from "@/components/ui/Header";
 import Sidebar from "@/components/ui/Sidebar";
+import Notification from "@/components/ui/Notification";
 
 export default function AppLayout() {
   const isMobile = useBreakpointValue({ base: true, md: false })!;
@@ -25,6 +26,8 @@ export default function AppLayout() {
           </div>
         </div>
       </div>
+
+      <Notification />
     </div>
   );
 }
