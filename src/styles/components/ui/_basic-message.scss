@@ -1,0 +1,15 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+
+/* Basic Message */
+.basic-message {
+  margin-top: 6rem;
+
+  &__text {
+    color: color.adjust(v.$secondary, $lightness: -20%);
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+    margin: 0;
+  }
+}

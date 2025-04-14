@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FolderPlus } from "lucide-react";
 import { getProjects } from "@/api/ProjectApi";
+import BasicMessage from "@/components/ui/BasicMessage";
 
 export default function DashboardView() {
   const { data, isLoading } = useQuery({
@@ -11,17 +12,26 @@ export default function DashboardView() {
 
   if (isLoading) return <p>Cargando...</p>;
 
-  return (
-    <div className="dashboard-view">
-      <h1 className="dashboard-view__heading">Mis Proyectos</h1>
-      <p className="dashboard-view__text">Crea proyectos y adminístralos.</p>
+  if (data)
+    return (
+      <div className="dashboard-view">
+        <h1 className="dashboard-view__heading">Mis Proyectos</h1>
+        <p className="dashboard-view__text">Crea proyectos y adminístralos.</p>
 
-      <nav className="dashboard-view__nav">
-        <Link className="dashboard-view__nav-link" to="/projects/create">
-          <FolderPlus />
-          Nuevo Proyecto
-        </Link>
-      </nav>
-    </div>
-  );
+        <nav className="dashboard-view__nav">
+          <Link className="dashboard-view__nav-link" to="/projects/create">
+            <FolderPlus />
+            Nuevo Proyecto
+          </Link>
+        </nav>
+
+        {!data.length ? (
+          <p>Sí hay proyectos</p>
+        ) : (
+          <BasicMessage>
+            Aún no tienes Proyectos cargados por aquí.
+          </BasicMessage>
+        )}
+      </div>
+    );
 }
