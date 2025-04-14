@@ -9,7 +9,7 @@ export default function Notification() {
       closeButton
       toastOptions={{
         style: {
-          fontFamily: "'Roboto', sans-serif",
+          fontFamily: "'Open Sans', sans-serif",
           fontSize: "1.6rem",
           borderWidth: "0.2rem"
         }
