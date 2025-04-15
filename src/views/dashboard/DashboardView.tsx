@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { FolderPlus } from "lucide-react";
 import { getProjects } from "@/api/ProjectApi";
 import BasicMessage from "@/components/ui/BasicMessage";
+import Spinner from "@/components/ui/Spinner";
 import ProjectsList from "@/components/projects/ProjectsList";
 
 export default function DashboardView() {
@@ -12,7 +13,7 @@ export default function DashboardView() {
     refetchOnWindowFocus: false
   });
 
-  if (isFetching) return <p>Cargando...</p>;
+  if (isFetching) return <Spinner />;
 
   if (data)
     return (
