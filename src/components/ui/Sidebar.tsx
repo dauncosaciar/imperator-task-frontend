@@ -47,6 +47,7 @@ export default function Sidebar({
         <Box
           className="sidebar__box"
           position="fixed"
+          zIndex={2}
           left="0"
           top="0"
           h="100vh"
