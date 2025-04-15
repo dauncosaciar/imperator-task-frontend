@@ -20,6 +20,12 @@
   }
 }
 
+@mixin desktop-xl {
+  @media (min-width: v.$desktop-xl) {
+    @content;
+  }
+}
+
 // Links and buttons
 @mixin link {
   cursor: pointer;

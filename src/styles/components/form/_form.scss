@@ -43,11 +43,11 @@
     }
 
     &--error {
-      border: 1px solid v.$error;
+      border: 1px solid v.$red;
 
       &:focus {
-        box-shadow: 0 0 0 0.4rem color.adjust(v.$error, $lightness: 20%);
-        border: 1px solid v.$error;
+        box-shadow: 0 0 0 0.4rem color.adjust(v.$red, $lightness: 20%);
+        border: 1px solid v.$red;
       }
     }
   }

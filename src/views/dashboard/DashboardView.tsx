@@ -3,14 +3,16 @@ import { useQuery } from "@tanstack/react-query";
 import { FolderPlus } from "lucide-react";
 import { getProjects } from "@/api/ProjectApi";
 import BasicMessage from "@/components/ui/BasicMessage";
+import ProjectsList from "@/components/projects/ProjectsList";
 
 export default function DashboardView() {
-  const { data, isLoading } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["projects"],
-    queryFn: getProjects
+    queryFn: getProjects,
+    refetchOnWindowFocus: false
   });
 
-  if (isLoading) return <p>Cargando...</p>;
+  if (isFetching) return <p>Cargando...</p>;
 
   if (data)
     return (
@@ -25,8 +27,8 @@ export default function DashboardView() {
           </Link>
         </nav>
 
-        {!data.length ? (
-          <p>Sí hay proyectos</p>
+        {data.length ? (
+          <ProjectsList data={data} />
         ) : (
           <BasicMessage>
             Aún no tienes Proyectos cargados por aquí.
