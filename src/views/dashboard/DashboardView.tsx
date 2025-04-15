@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { FolderPlus } from "lucide-react";
@@ -5,6 +6,7 @@ import { getProjects } from "@/api/ProjectApi";
 import BasicMessage from "@/components/ui/BasicMessage";
 import Spinner from "@/components/ui/Spinner";
 import ProjectsList from "@/components/projects/ProjectsList";
+import { changeDocumentTitle } from "@/utils";
 
 export default function DashboardView() {
   const { data, isFetching } = useQuery({
@@ -12,6 +14,10 @@ export default function DashboardView() {
     queryFn: getProjects,
     refetchOnWindowFocus: false
   });
+
+  useEffect(() => {
+    changeDocumentTitle("Mis Proyectos");
+  }, []);
 
   if (isFetching) return <Spinner />;
 

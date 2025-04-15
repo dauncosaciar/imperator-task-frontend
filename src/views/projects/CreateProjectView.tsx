@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -7,6 +8,7 @@ import { ProjectFormData } from "@/types";
 import ProjectForm from "@/components/projects/ProjectForm";
 import Form from "@/components/form/Form";
 import { createProject } from "@/api/ProjectApi";
+import { changeDocumentTitle } from "@/utils";
 
 export default function CreateProjectView() {
   const navigate = useNavigate();
@@ -33,6 +35,10 @@ export default function CreateProjectView() {
       navigate("/");
     }
   });
+
+  useEffect(() => {
+    changeDocumentTitle("Crear Proyecto");
+  }, []);
 
   const handleForm = (formData: ProjectFormData) => mutate(formData);
 
