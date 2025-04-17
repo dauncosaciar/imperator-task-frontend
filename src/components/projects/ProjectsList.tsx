@@ -1,5 +1,6 @@
 import { FolderInput, Pencil, Trash } from "lucide-react";
 import { DashboardProject } from "@/types";
+import Tooltip from "../ui/Tooltip";
 
 type ProjectsListProps = {
   data: DashboardProject;
@@ -23,15 +24,23 @@ export default function ProjectsList({ data }: ProjectsListProps) {
           </div>
 
           <div className="project__options">
-            <a href="#" className="project__option">
-              <FolderInput />
-            </a>
-            <a href="#" className="project__option">
-              <Pencil />
-            </a>
-            <a href="#" className="project__option project__option--delete">
-              <Trash />
-            </a>
+            <Tooltip tooltipText="Ver Proyecto">
+              <a href="#" className="project__option">
+                <FolderInput />
+              </a>
+            </Tooltip>
+
+            <Tooltip tooltipText="Editar Proyecto">
+              <a href="#" className="project__option">
+                <Pencil />
+              </a>
+            </Tooltip>
+
+            <Tooltip tooltipText="Eliminar Proyecto">
+              <a href="#" className="project__option project__option--delete">
+                <Trash />
+              </a>
+            </Tooltip>
           </div>
         </div>
       ))}

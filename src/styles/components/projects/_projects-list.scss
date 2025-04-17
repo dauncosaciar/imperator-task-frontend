@@ -77,8 +77,12 @@
 
   &__options {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     gap: 2rem;
+
+    @include m.tablet {
+      justify-content: flex-end;
+    }
   }
 
   &__option {

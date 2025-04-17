@@ -1,0 +1,44 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+
+  &__text {
+    width: v.$tooltip-width;
+    background-color: color.adjust(v.$grey, $lightness: -50%);
+    color: v.$white;
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 0.5rem 0.3rem;
+    border-radius: 0.6rem;
+    position: absolute;
+    top: 115%;
+    left: 50%;
+    margin-left: calc(-#{v.$tooltip-width} / 2);
+    z-index: 1;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.15s ease-in-out;
+
+    &::after {
+      content: " ";
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      margin-left: -5px;
+      border-width: 5px;
+      border-style: solid;
+      border-color: transparent transparent
+        color.adjust(v.$grey, $lightness: -50%);
+    }
+  }
+
+  &:hover &__text {
+    visibility: visible;
+    opacity: 1;
+  }
+}
