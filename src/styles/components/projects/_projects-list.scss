@@ -78,7 +78,7 @@
   &__options {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
 
     @include m.tablet {
       justify-content: flex-end;
@@ -92,6 +92,13 @@
 
     &--delete {
       color: v.$red;
+    }
+
+    @include m.nav-link(v.$primary);
+
+    & {
+      border-radius: 0.6rem;
+      padding: 0.25rem 0.5rem;
     }
   }
 }
