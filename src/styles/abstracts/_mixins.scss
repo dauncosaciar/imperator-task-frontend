@@ -43,8 +43,10 @@
 @mixin nav-link($hover-color) {
   @include link;
 
-  color: v.$black;
-  text-decoration: none;
+  & {
+    color: v.$black;
+    text-decoration: none;
+  }
 
   &:last-of-type {
     margin-bottom: 0;
@@ -59,16 +61,18 @@
 @mixin button($background-color, $text-color, $icon-color) {
   @include link;
 
-  background-color: $background-color;
-  color: $text-color;
-  border: none;
-
   &:hover {
     background-color: color.adjust($background-color, $lightness: -10%);
   }
 
   svg {
     color: $icon-color;
+  }
+
+  & {
+    background-color: $background-color;
+    color: $text-color;
+    border: none;
   }
 }
 
