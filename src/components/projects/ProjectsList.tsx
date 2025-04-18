@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { FolderInput, Pencil, Trash } from "lucide-react";
 import { DashboardProject } from "@/types";
 import Tooltip from "../ui/Tooltip";
@@ -31,9 +32,12 @@ export default function ProjectsList({ data }: ProjectsListProps) {
             </Tooltip>
 
             <Tooltip tooltipText="Editar Proyecto">
-              <a href="#" className="project__option">
+              <Link
+                to={`/projects/${project._id}/edit`}
+                className="project__option"
+              >
                 <Pencil />
-              </a>
+              </Link>
             </Tooltip>
 
             <Tooltip tooltipText="Eliminar Proyecto">
