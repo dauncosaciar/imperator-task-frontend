@@ -1,15 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { Pencil, Undo2 } from "lucide-react";
+import { toast } from "sonner";
 import Form from "../form/Form";
-import { ProjectFormData } from "@/types";
+import { Project, ProjectFormData } from "@/types";
 import ProjectForm from "./ProjectForm";
+import { updateProject } from "@/api/ProjectApi";
 
 type EditProjectFormProps = {
   data: ProjectFormData;
+  projectId: Project["_id"];
 };
 
-export default function EditProjectForm({ data }: EditProjectFormProps) {
+export default function EditProjectForm({
+  data,
+  projectId
+}: EditProjectFormProps) {
+  const navigate = useNavigate();
+
   const initialValues: ProjectFormData = {
     projectName: data.projectName,
     clientName: data.clientName,
@@ -22,8 +31,23 @@ export default function EditProjectForm({ data }: EditProjectFormProps) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const { mutate } = useMutation({
+    mutationFn: updateProject,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      navigate("/");
+    }
+  });
+
   const handleForm = (formData: ProjectFormData) => {
-    console.log("formData:", formData);
+    const data = {
+      formData,
+      projectId
+    };
+    mutate(data);
   };
 
   return (
