@@ -1,0 +1,26 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Edit Project Form */
+.edit-project-form {
+  &__heading {
+    @include m.heading-with-border(v.$black, v.$grey);
+  }
+
+  &__text {
+    @include m.intro-text;
+  }
+
+  &__nav {
+    display: flex;
+    margin-top: 2rem;
+
+    &-link {
+      @include m.button(v.$primary, v.$white, v.$secondary);
+
+      & {
+        width: auto;
+      }
+    }
+  }
+}

@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { getProjectById } from "@/api/ProjectApi";
 import Spinner from "@/components/ui/Spinner";
 import { changeDocumentTitle } from "@/utils";
+import EditProjectForm from "@/components/projects/EditProjectForm";
 
 export default function EditProjectView() {
   const params = useParams();
@@ -16,10 +17,6 @@ export default function EditProjectView() {
     retry: false
   });
 
-  console.log("data:", data);
-  console.log("isFetching:", isFetching);
-  console.log("isError:", isError);
-
   useEffect(() => {
     if (data) {
       const documentTitle = `Editar Proyecto: ${data.projectName}`;
@@ -29,5 +26,7 @@ export default function EditProjectView() {
 
   if (isFetching) return <Spinner />;
 
-  return <div>EditProjectView</div>;
+  if (isError) return <Navigate to="/404" />;
+
+  if (data) return <EditProjectForm data={data} />;
 }
