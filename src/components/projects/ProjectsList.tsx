@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FolderInput, Pencil, Trash } from "lucide-react";
+import { toast } from "sonner";
 import { DashboardProject } from "@/types";
+import { deleteProject } from "@/api/ProjectApi";
 import Tooltip from "../ui/Tooltip";
 
 type ProjectsListProps = {
@@ -8,6 +11,19 @@ type ProjectsListProps = {
 };
 
 export default function ProjectsList({ data }: ProjectsListProps) {
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteProject,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      toast.success(data);
+    }
+  });
+
   return (
     <div className="projects-list">
       {data.map(project => (
@@ -41,9 +57,13 @@ export default function ProjectsList({ data }: ProjectsListProps) {
             </Tooltip>
 
             <Tooltip tooltipText="Eliminar Proyecto">
-              <a href="#" className="project__option project__option--delete">
+              <button
+                type="button"
+                className="project__option project__option--delete"
+                onClick={() => mutate(project._id)}
+              >
                 <Trash />
-              </a>
+              </button>
             </Tooltip>
           </div>
         </div>
