@@ -33,7 +33,7 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
 
       <div className="form__field">
         <label htmlFor="clientName" className="form__label">
-          Nombre Cliente
+          Nombre del Cliente
         </label>
         <input
           id="clientName"
