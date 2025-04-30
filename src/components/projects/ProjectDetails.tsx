@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { ListFilterPlus } from "lucide-react";
+import AddTaskModal from "../tasks/AddTaskModal";
 
 export default function ProjectDetails({ data }) {
   const navigate = useNavigate();
@@ -20,6 +21,8 @@ export default function ProjectDetails({ data }) {
           <ListFilterPlus /> Agregar Tarea
         </button>
       </nav>
+
+      <AddTaskModal />
     </div>
   );
 }
