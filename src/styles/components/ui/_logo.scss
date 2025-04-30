@@ -2,9 +2,9 @@
 
 /* Logo */
 .logo {
-  max-width: 17rem;
+  width: 17rem;
 
   @include m.phone {
-    max-width: 20rem;
+    width: 20rem;
   }
 }

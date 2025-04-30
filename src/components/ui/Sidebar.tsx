@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
+import { Link } from "react-router-dom";
 import { Box, Drawer, Portal } from "@chakra-ui/react";
 import { X } from "lucide-react";
 import Nav from "./Nav";
@@ -29,7 +30,9 @@ export default function Sidebar({
             <Drawer.Positioner>
               <Drawer.Content>
                 <Drawer.Header>
-                  <Logo />
+                  <Link to="/">
+                    <Logo />
+                  </Link>
                 </Drawer.Header>
                 <Drawer.Body>
                   <Nav />
@@ -55,7 +58,9 @@ export default function Sidebar({
           bg="white"
           p={8}
         >
-          <Logo />
+          <Link to="/">
+            <Logo />
+          </Link>
           <Nav />
         </Box>
       )}

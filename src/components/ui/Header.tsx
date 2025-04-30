@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { AlignLeft } from "lucide-react";
 import Logo from "./Logo";
 import AvatarMenu from "./AvatarMenu";
@@ -16,7 +17,10 @@ export default function Header({ isMobile, onOpen }: HeaderProps) {
             <button className="header__button" type="button" onClick={onOpen}>
               <AlignLeft />
             </button>
-            <Logo />
+
+            <Link to="/">
+              <Logo />
+            </Link>
           </>
         )}
 
