@@ -30,9 +30,9 @@ export default function ProjectsList({ data }: ProjectsListProps) {
         <div key={project._id} className="project">
           <div className="project__content">
             <h4 className="project__heading">
-              <a href="#" className="project__link">
+              <Link to={`/projects/${project._id}`} className="project__link">
                 {project.projectName}
-              </a>
+              </Link>
             </h4>
             <p className="project__client">
               Cliente: <span>{project.clientName}</span>
@@ -42,9 +42,9 @@ export default function ProjectsList({ data }: ProjectsListProps) {
 
           <div className="project__options">
             <Tooltip tooltipText="Ver Proyecto">
-              <a href="#" className="project__option">
+              <Link to={`/projects/${project._id}`} className="project__option">
                 <FolderInput />
-              </a>
+              </Link>
             </Tooltip>
 
             <Tooltip tooltipText="Editar Proyecto">
