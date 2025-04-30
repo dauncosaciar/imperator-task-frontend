@@ -6,7 +6,9 @@ export default function ProjectDetails({ data }) {
 
   return (
     <div className="project-details">
-      <h1 className="project-details__heading">Proyecto: {data.projectName}</h1>
+      <h1 className="project-details__heading">
+        Proyecto: <span>{data.projectName}</span>
+      </h1>
       <p className="project-details__description">{data.description}</p>
 
       <nav className="project-details__nav">
