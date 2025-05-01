@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { ListFilterPlus } from "lucide-react";
 import AddTaskModal from "../tasks/AddTaskModal";
 
 export default function ProjectDetails({ data }) {
+  const location = useLocation();
   const navigate = useNavigate();
 
   return (
@@ -16,7 +17,7 @@ export default function ProjectDetails({ data }) {
         <button
           type="button"
           className="project-details__nav-link"
-          onClick={() => navigate("?newTask=true")}
+          onClick={() => navigate(location.pathname + "?newTask=true")}
         >
           <ListFilterPlus /> Agregar Tarea
         </button>
