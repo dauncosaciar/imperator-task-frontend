@@ -1,6 +1,10 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { Dialog, Portal } from "@chakra-ui/react";
-import { X } from "lucide-react";
+import { Plus, X } from "lucide-react";
+import Form from "../form/Form";
+import TaskForm from "./TaskForm";
+import { TaskFormData } from "@/types";
 
 export default function AddTaskModal() {
   const navigate = useNavigate();
@@ -8,6 +12,21 @@ export default function AddTaskModal() {
   const queryParams = new URLSearchParams(location.search);
   const modalTask = queryParams.get("newTask");
   const open = modalTask ? true : false;
+
+  const initialValues: TaskFormData = {
+    name: "",
+    description: ""
+  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm({ defaultValues: initialValues });
+
+  const handleForm = (formData: TaskFormData) => {
+    console.log("formData:", formData);
+  };
 
   return (
     <Dialog.Root
@@ -28,6 +47,16 @@ export default function AddTaskModal() {
             <p className="add-task-modal__text">
               Completa el formulario y crea una nueva.
             </p>
+
+            <Form
+              handleSubmit={handleSubmit}
+              fnSubmit={handleForm}
+              InnerForm={TaskForm}
+              register={register}
+              errors={errors}
+              submitIcon={Plus}
+              submitText="Crear Tarea"
+            />
 
             <Dialog.CloseTrigger asChild>
               <button type="button">

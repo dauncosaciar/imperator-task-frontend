@@ -18,4 +18,15 @@
   &__heading {
     @include m.heading-with-border(v.$black, v.$grey);
   }
+
+  &__text {
+    @include m.intro-text;
+  }
+
+  .form {
+    padding: 0;
+    box-shadow: unset;
+    margin: 4rem 0 0;
+    max-width: unset;
+  }
 }
