@@ -24,7 +24,7 @@ export default function ProjectDetailsView() {
     }
   }, [data]);
 
-  if (isFetching) return <Spinner />;
+  if (isFetching) return <Spinner spinnerText="Recuperando datos" />;
 
   if (isError) return <Navigate to="/404" />;
 

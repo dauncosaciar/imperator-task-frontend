@@ -9,16 +9,17 @@
   justify-content: center;
   width: 100%;
   height: 100%;
-  gap: 0.5rem;
+  gap: 1rem;
 
-  svg {
-    color: v.$primary;
-    max-width: 6rem;
+  &__figure {
+    fill: v.$primary;
+    width: 3.5rem;
   }
 
-  span {
-    font-family: v.$heading-font;
-    font-weight: 700;
-    font-size: 2rem;
+  &__text {
+    color: color.adjust(v.$black, $lightness: 40%);
+    font-family: v.$main-font;
+    font-weight: 600;
+    font-size: 1.8rem;
   }
 }

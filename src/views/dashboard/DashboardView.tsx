@@ -19,7 +19,7 @@ export default function DashboardView() {
     changeDocumentTitle("Mis Proyectos");
   }, []);
 
-  if (isFetching) return <Spinner />;
+  if (isFetching) return <Spinner spinnerText="Recuperando tus proyectos" />;
 
   if (data)
     return (
