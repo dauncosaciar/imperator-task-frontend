@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
@@ -41,10 +42,16 @@ export default function AddTaskModal() {
     },
     onSuccess: data => {
       toast.success(data);
-      reset();
       navigate(location.pathname, { replace: true });
     }
   });
+
+  // With this useEffect, when the modal closes, the form data is reset whether the user submits the data or decides to close it without submitting anything
+  useEffect(() => {
+    if (!open) {
+      reset();
+    }
+  }, [open, reset]);
 
   const handleForm = (formData: TaskFormData) => {
     const data = {
