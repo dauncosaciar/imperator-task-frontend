@@ -73,6 +73,7 @@
 
   &__description {
     margin-top: 2rem;
+    color: color.adjust(v.$black, $lightness: 50%);
   }
 
   &__options {
