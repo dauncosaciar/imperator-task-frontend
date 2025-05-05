@@ -1,0 +1,33 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Tasks List */
+.tasks-list {
+  margin-top: 4rem;
+
+  &__heading {
+    font-family: v.$heading-font;
+    font-weight: 700;
+  }
+
+  &__content {
+    display: flex;
+    gap: 2rem;
+    overflow-x: scroll;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+
+    @include m.desktop-xl {
+      overflow: auto;
+    }
+  }
+
+  &__frame {
+    width: 25rem;
+    flex-shrink: 0;
+
+    @include m.desktop-xl {
+      min-width: 0;
+    }
+  }
+}

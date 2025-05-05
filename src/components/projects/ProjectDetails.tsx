@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { ListFilterPlus } from "lucide-react";
+import TasksList from "../tasks/TasksList";
 import AddTaskModal from "../tasks/AddTaskModal";
 
 export default function ProjectDetails({ data }) {
@@ -23,6 +24,7 @@ export default function ProjectDetails({ data }) {
         </button>
       </nav>
 
+      <TasksList tasks={data.tasks} />
       <AddTaskModal />
     </div>
   );
