@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/abstracts/variables" as v;
 @use "@/styles/abstracts/mixins" as m;
 
@@ -23,8 +24,12 @@
   }
 
   &__frame {
-    width: 25rem;
+    background-color: color.adjust(v.$generic-status, $lightness: 30%);
+    border-radius: 1.2rem;
+    width: 29rem;
     flex-shrink: 0;
+    padding: 1.5rem;
+    min-height: 15rem;
 
     @include m.desktop-xl {
       min-width: 0;

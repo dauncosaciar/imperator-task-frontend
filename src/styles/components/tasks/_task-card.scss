@@ -1,5 +1,36 @@
+@use "sass:color";
 @use "@/styles/abstracts/variables" as v;
 
 /* Task Card */
 .task-card {
+  background-color: v.$white;
+  border-radius: 1.2rem;
+  margin-bottom: 1.5rem;
+  padding: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  &__name {
+    color: #0f6130;
+    font-weight: 700;
+    margin-bottom: 0;
+    font-size: 1.6rem;
+  }
+
+  &__description {
+    color: color.adjust(v.$black, $lightness: 50%);
+    font-size: 1.4rem;
+    margin-top: 0.5rem;
+  }
+
+  &__menu {
+    svg {
+      width: 2rem;
+    }
+  }
 }
