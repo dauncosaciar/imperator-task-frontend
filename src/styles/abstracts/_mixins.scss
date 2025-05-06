@@ -95,6 +95,30 @@
   font-weight: 300;
 }
 
+// Menus
+@mixin menu {
+  width: 95%;
+
+  @include tablet {
+    width: 30rem;
+  }
+
+  &__content {
+    background-color: v.$white;
+    border-radius: 1.2rem;
+    border: 1px solid v.$light-grey;
+    color: v.$black;
+    font-size: 1.6rem;
+    width: 100%;
+    padding: 2rem 1rem;
+    box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+
+    @include tablet {
+      padding: 2rem;
+    }
+  }
+}
+
 // CSS grids
 @mixin grid($columns, $spacing) {
   display: grid;
