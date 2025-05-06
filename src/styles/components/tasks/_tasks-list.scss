@@ -13,9 +13,10 @@
 
   &__content {
     display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     gap: 2rem;
     overflow-x: scroll;
-    justify-content: space-between;
     padding-bottom: 2rem;
 
     @include m.desktop-xl {
@@ -26,13 +27,42 @@
   &__frame {
     background-color: color.adjust(v.$generic-status, $lightness: 30%);
     border-radius: 1.2rem;
-    width: 29rem;
     flex-shrink: 0;
-    padding: 1.5rem;
-    min-height: 15rem;
+    padding: 2rem;
+    width: 26rem;
+
+    @include m.tablet {
+      width: 29rem;
+    }
 
     @include m.desktop-xl {
       min-width: 0;
     }
+
+    &--pending {
+      background-color: color.adjust(v.$pending, $lightness: 45%);
+    }
+
+    &--on-hold {
+      background-color: color.adjust(v.$on-hold, $lightness: 35%);
+    }
+
+    &--in-progress {
+      background-color: color.adjust(v.$in-progress, $lightness: 35%);
+    }
+
+    &--under-review {
+      background-color: color.adjust(v.$under-review, $lightness: 40%);
+    }
+
+    &--completed {
+      background-color: color.adjust(v.$completed, $lightness: 45%);
+    }
+  }
+
+  &__status-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
   }
 }
