@@ -36,10 +36,6 @@
     margin-bottom: 0;
   }
 
-  @include m.desktop-xl {
-    padding: 3rem;
-  }
-
   &__heading {
     color: v.$primary;
     font-weight: 700;
