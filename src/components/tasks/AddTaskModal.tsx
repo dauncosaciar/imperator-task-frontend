@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { Plus, X } from "lucide-react";
 import { toast } from "sonner";
@@ -35,12 +35,15 @@ export default function AddTaskModal() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: createTask,
     onError: error => {
       toast.error(error.message);
     },
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
       toast.success(data);
       navigate(location.pathname, { replace: true });
     }
