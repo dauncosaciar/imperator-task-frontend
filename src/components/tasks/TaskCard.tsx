@@ -1,5 +1,5 @@
-import { EllipsisVertical } from "lucide-react";
 import { Task } from "@/types";
+import TaskCardMenu from "./TaskCardMenu";
 
 type TaskCardProps = {
   task: Task;
@@ -13,9 +13,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         <p className="task-card__description">{task.description}</p>
       </div>
 
-      <div className="task-card__menu">
-        <EllipsisVertical />
-      </div>
+      <TaskCardMenu />
     </li>
   );
 }

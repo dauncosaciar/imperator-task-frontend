@@ -1,0 +1,35 @@
+@use "@/styles/abstracts/mixins" as m;
+@use "@/styles/abstracts/variables" as v;
+
+/* Task Card Menu */
+.task-card-menu {
+  @include m.menu;
+
+  & {
+    width: 15rem;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
+  &__button {
+    @include m.nav-link(v.$primary);
+
+    &--delete {
+      color: v.$red;
+    }
+  }
+}
+
+.task-card-avatar {
+  cursor: pointer;
+
+  svg {
+    width: 2rem;
+  }
+}
