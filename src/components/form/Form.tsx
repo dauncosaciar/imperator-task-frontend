@@ -6,6 +6,7 @@ import {
   UseFormHandleSubmit,
   UseFormRegister
 } from "react-hook-form";
+import Spinner from "../ui/Spinner";
 
 type FormProps<T extends FieldValues> = {
   handleSubmit: UseFormHandleSubmit<T>;
@@ -16,6 +17,8 @@ type FormProps<T extends FieldValues> = {
   }>;
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
+  mutationExecuting: boolean;
+  spinnerMessage: string;
   submitIcon: ElementType;
   submitText: string;
 };
@@ -26,6 +29,8 @@ export default function Form<T extends FieldValues>({
   InnerForm,
   register,
   errors,
+  mutationExecuting,
+  spinnerMessage,
   submitIcon,
   submitText
 }: FormProps<T>) {
@@ -35,9 +40,13 @@ export default function Form<T extends FieldValues>({
     <form className="form" onSubmit={handleSubmit(fnSubmit)} noValidate>
       <InnerForm register={register} errors={errors} />
 
-      <button className="form__submit" type="submit">
-        <Icon /> {submitText}
-      </button>
+      {!mutationExecuting ? (
+        <button className="form__submit" type="submit">
+          <Icon /> {submitText}
+        </button>
+      ) : (
+        <Spinner spinnerText={spinnerMessage} />
+      )}
     </form>
   );
 }

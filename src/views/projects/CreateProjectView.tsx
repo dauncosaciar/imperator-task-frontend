@@ -25,7 +25,7 @@ export default function CreateProjectView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const { mutate } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: createProject,
     onError: error => {
       toast.error(error.message);
@@ -56,20 +56,14 @@ export default function CreateProjectView() {
       </nav>
 
       <div className="create-project-view__content">
-        {/* <form className="form" onSubmit={handleSubmit(handleForm)} noValidate>
-          <ProjectForm register={register} errors={errors} />
-
-          <button className="form__submit" type="submit">
-            <Plus /> Crear Proyecto
-          </button>
-        </form> */}
-
         <Form
           handleSubmit={handleSubmit}
           fnSubmit={handleForm}
           InnerForm={ProjectForm}
           register={register}
           errors={errors}
+          mutationExecuting={isPending}
+          spinnerMessage="Creando proyecto"
           submitIcon={Plus}
           submitText="Crear Proyecto"
         />

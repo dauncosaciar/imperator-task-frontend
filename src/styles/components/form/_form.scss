@@ -63,4 +63,14 @@
       width: auto;
     }
   }
+
+  .spinner {
+    &__figure {
+      width: 2.5rem;
+    }
+
+    &__text {
+      font-size: 1.6rem;
+    }
+  }
 }

@@ -33,7 +33,7 @@ export default function EditProjectForm({
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: updateProject,
     onError: error => {
       toast.error(error.message);
@@ -75,6 +75,8 @@ export default function EditProjectForm({
           InnerForm={ProjectForm}
           register={register}
           errors={errors}
+          mutationExecuting={isPending}
+          spinnerMessage="Guardando cambios"
           submitIcon={Pencil}
           submitText="Guardar Cambios"
         />

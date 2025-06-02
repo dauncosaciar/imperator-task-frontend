@@ -37,7 +37,7 @@ export default function AddTaskModal() {
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const { isPending, mutate } = useMutation({
     mutationFn: createTask,
     onError: error => {
       toast.error(error.message);
@@ -90,6 +90,8 @@ export default function AddTaskModal() {
               InnerForm={TaskForm}
               register={register}
               errors={errors}
+              mutationExecuting={isPending}
+              spinnerMessage="Creando tarea"
               submitIcon={Plus}
               submitText="Crear Tarea"
             />
