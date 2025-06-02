@@ -37,7 +37,8 @@
   width: 100%;
   outline: 0;
   text-align: center;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out;
 }
 
 @mixin nav-link($hover-color) {
@@ -63,6 +64,10 @@
 
   &:hover {
     background-color: color.adjust($background-color, $lightness: -10%);
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 0.4rem color.adjust($background-color, $lightness: 55%);
   }
 
   svg {
