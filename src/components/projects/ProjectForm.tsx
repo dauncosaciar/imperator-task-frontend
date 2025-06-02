@@ -5,9 +5,14 @@ import ErrorMessage from "../form/ErrorMessage";
 type ProjectFormProps = {
   register: UseFormRegister<ProjectFormData>;
   errors: FieldErrors<ProjectFormData>;
+  mutationExecuting: boolean;
 };
 
-export default function ProjectForm({ register, errors }: ProjectFormProps) {
+export default function ProjectForm({
+  register,
+  errors,
+  mutationExecuting
+}: ProjectFormProps) {
   return (
     <>
       <div className="form__field">
@@ -16,11 +21,12 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
         </label>
         <input
           id="projectName"
-          className={`form__input ${
-            errors.projectName ? "form__input--error" : ""
-          }`}
+          className={`form__input${
+            errors.projectName ? " form__input--error" : ""
+          }${mutationExecuting ? " form__input--disabled" : ""}`}
           type="text"
           placeholder="Nombre del Proyecto"
+          disabled={mutationExecuting}
           {...register("projectName", {
             required: "El Título del Proyecto es obligatorio."
           })}
@@ -37,11 +43,12 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
         </label>
         <input
           id="clientName"
-          className={`form__input ${
-            errors.clientName ? "form__input--error" : ""
-          }`}
+          className={`form__input${
+            errors.clientName ? " form__input--error" : ""
+          }${mutationExecuting ? " form__input--disabled" : ""}`}
           type="text"
           placeholder="Nombre del Cliente"
+          disabled={mutationExecuting}
           {...register("clientName", {
             required: "El Nombre del Cliente es obligatorio."
           })}
@@ -58,10 +65,11 @@ export default function ProjectForm({ register, errors }: ProjectFormProps) {
         </label>
         <textarea
           id="description"
-          className={`form__input ${
-            errors.description ? "form__input--error" : ""
-          }`}
+          className={`form__input${
+            errors.description ? " form__input--error" : ""
+          }${mutationExecuting ? " form__input--disabled" : ""}`}
           placeholder="Descripción del Proyecto"
+          disabled={mutationExecuting}
           {...register("description", {
             required: "La Descripción del Proyecto es obligatoria."
           })}

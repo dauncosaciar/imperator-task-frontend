@@ -14,6 +14,7 @@ type FormProps<T extends FieldValues> = {
   InnerForm: ComponentType<{
     register: UseFormRegister<T>;
     errors: FieldErrors<T>;
+    mutationExecuting: boolean;
   }>;
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
@@ -38,7 +39,11 @@ export default function Form<T extends FieldValues>({
 
   return (
     <form className="form" onSubmit={handleSubmit(fnSubmit)} noValidate>
-      <InnerForm register={register} errors={errors} />
+      <InnerForm
+        register={register}
+        errors={errors}
+        mutationExecuting={mutationExecuting}
+      />
 
       {!mutationExecuting ? (
         <button className="form__submit" type="submit">

@@ -50,6 +50,10 @@
         border: 1px solid v.$red;
       }
     }
+
+    &--disabled {
+      color: color.adjust(v.$black, $lightness: 55%);
+    }
   }
 
   textarea {
