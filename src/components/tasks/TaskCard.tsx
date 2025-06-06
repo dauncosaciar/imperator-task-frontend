@@ -1,5 +1,5 @@
-import { Task } from "@/types";
 import TaskCardMenu from "./TaskCardMenu";
+import { Task } from "@/types";
 
 type TaskCardProps = {
   task: Task;
@@ -13,7 +13,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         <p className="task-card__description">{task.description}</p>
       </div>
 
-      <TaskCardMenu />
+      <TaskCardMenu task={task} />
     </li>
   );
 }

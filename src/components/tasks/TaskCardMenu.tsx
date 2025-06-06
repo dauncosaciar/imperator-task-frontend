@@ -1,7 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import { EllipsisVertical } from "lucide-react";
 import { Menu, Portal } from "@chakra-ui/react";
+import { Task } from "@/types";
 
-export default function TaskCardMenu() {
+type TaskCardMenuProps = {
+  task: Task;
+};
+
+export default function TaskCardMenu({ task }: TaskCardMenuProps) {
+  const navigate = useNavigate();
+
   return (
     <Menu.Root positioning={{ placement: "bottom-end" }}>
       <Menu.Trigger asChild>
@@ -15,7 +23,13 @@ export default function TaskCardMenu() {
             <button type="button" className="task-card-menu__button">
               Ver Tarea
             </button>
-            <button type="button" className="task-card-menu__button">
+            <button
+              type="button"
+              className="task-card-menu__button"
+              onClick={() =>
+                navigate(location.pathname + `?editTask=${task._id}`)
+              }
+            >
               Editar Tarea
             </button>
             <button
