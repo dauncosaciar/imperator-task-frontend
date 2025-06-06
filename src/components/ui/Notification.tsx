@@ -4,12 +4,12 @@ export default function Notification() {
   return (
     <Toaster
       className="notification"
-      position="bottom-right"
+      position="bottom-center"
       richColors
       closeButton
       toastOptions={{
         style: {
-          fontFamily: "'Open Sans', sans-serif",
+          fontFamily: "Lato, sans-serif",
           fontSize: "1.6rem",
           borderWidth: "0.2rem"
         }
