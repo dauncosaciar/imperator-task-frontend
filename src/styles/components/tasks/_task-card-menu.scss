@@ -17,6 +17,12 @@
     padding: 0;
   }
 
+  &__item {
+    background-color: transparent;
+    font-size: 1.4rem;
+    padding: 0;
+  }
+
   &__button {
     @include m.nav-link(v.$primary);
 
