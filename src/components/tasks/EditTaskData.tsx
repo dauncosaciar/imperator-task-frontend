@@ -19,7 +19,5 @@ export default function EditTaskData() {
     retry: false
   });
 
-  console.log("data:", data);
-
-  if (data) return <EditTaskModal />;
+  if (data) return <EditTaskModal data={data} />;
 }
