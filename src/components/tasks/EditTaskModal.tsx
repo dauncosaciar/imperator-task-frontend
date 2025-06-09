@@ -1,18 +1,25 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Dialog, Portal } from "@chakra-ui/react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useForm } from "react-hook-form";
 import { Pencil, X } from "lucide-react";
-import { Task, TaskFormData } from "@/types";
 import Form from "../form/Form";
 import TaskForm from "./TaskForm";
+import { Task, TaskFormData } from "@/types";
+import { updateTask } from "@/api/TaskApi";
+import { toast } from "sonner";
 
 type EditTaskModalProps = {
   data: Task;
+  taskId: Task["_id"];
 };
 
-export default function EditTaskModal({ data }: EditTaskModalProps) {
+export default function EditTaskModal({ data, taskId }: EditTaskModalProps) {
   const navigate = useNavigate();
+
+  // Get projectId
+  const params = useParams();
+  const projectId = params.projectId!;
 
   const initialValues: TaskFormData = {
     name: data.name,
@@ -26,17 +33,29 @@ export default function EditTaskModal({ data }: EditTaskModalProps) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const queryClient = useQueryClient();
+
   const { isPending, mutate } = useMutation({
+    mutationFn: updateTask,
     onError: error => {
-      console.log("onError...");
+      toast.error(error.message);
     },
     onSuccess: data => {
-      console.log("onSuccess...");
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      queryClient.invalidateQueries({ queryKey: ["task", taskId] });
+      toast.success(data);
+      reset();
+      navigate(location.pathname, { replace: true });
     }
   });
 
   const handleForm = (formData: TaskFormData) => {
-    console.log("formData:", formData);
+    const data = {
+      projectId,
+      taskId,
+      formData
+    };
+    mutate(data);
   };
 
   return (
