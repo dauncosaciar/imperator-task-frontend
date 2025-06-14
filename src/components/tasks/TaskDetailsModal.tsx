@@ -1,14 +1,39 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Navigate,
+  useLocation,
+  useNavigate,
+  useParams
+} from "react-router-dom";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { X } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import { getTaskById } from "@/api/TaskApi";
+import { toast } from "sonner";
 
 export default function TaskDetailsModal() {
+  const params = useParams();
+  const projectId = params.projectId!;
   const navigate = useNavigate();
 
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const taskId = queryParams.get("viewTask");
+  const taskId = queryParams.get("viewTask")!;
   const open = taskId ? true : false;
+
+  const { data, isError, error } = useQuery({
+    queryKey: ["task", taskId],
+    queryFn: () => getTaskById({ projectId, taskId }),
+    enabled: !!taskId,
+    refetchOnWindowFocus: false,
+    retry: false
+  });
+
+  if (isError) {
+    toast.error(error.message, { id: "error" });
+    return <Navigate to={`/projects/${projectId}`} />;
+  }
+
+  console.log("data:", data);
 
   return (
     <Dialog.Root
