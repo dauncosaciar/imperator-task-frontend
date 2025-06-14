@@ -1,7 +1,10 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { EllipsisVertical } from "lucide-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Menu, Portal } from "@chakra-ui/react";
+import { toast } from "sonner";
 import { Task } from "@/types";
+import { deleteTask } from "@/api/TaskApi";
 
 type TaskCardMenuProps = {
   task: Task;
@@ -9,6 +12,21 @@ type TaskCardMenuProps = {
 
 export default function TaskCardMenu({ task }: TaskCardMenuProps) {
   const navigate = useNavigate();
+  const params = useParams();
+  const projectId = params.projectId!;
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: deleteTask,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      toast.success(data);
+    }
+  });
 
   return (
     <Menu.Root positioning={{ placement: "bottom-end" }}>
@@ -42,6 +60,7 @@ export default function TaskCardMenu({ task }: TaskCardMenuProps) {
               <button
                 type="button"
                 className="task-card-menu__button task-card-menu__button--delete"
+                onClick={() => mutate({ projectId, taskId: task._id })}
               >
                 Eliminar Tarea
               </button>
