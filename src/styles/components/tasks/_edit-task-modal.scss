@@ -4,16 +4,7 @@
 
 /* Edit Task Modal */
 .edit-task-modal {
-  background-color: v.$white;
-  border-radius: 1.2rem;
-  box-shadow: 0px 10px 15px -3px color.adjust(v.$black, $lightness: 50%);
-  font-size: 1.6rem;
-  padding: 2rem;
-  max-width: 75rem;
-
-  @include m.tablet {
-    padding: 3rem;
-  }
+  @include m.modal;
 
   &__heading {
     @include m.heading-with-border(v.$black, v.$grey);
