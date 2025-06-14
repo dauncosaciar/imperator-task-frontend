@@ -39,7 +39,13 @@ export default function TaskCardMenu({ task }: TaskCardMenuProps) {
         <Menu.Positioner className="task-card-menu">
           <Menu.Content className="task-card-menu__content">
             <Menu.Item className="task-card-menu__item" value="Ver Tarea">
-              <button type="button" className="task-card-menu__button">
+              <button
+                type="button"
+                className="task-card-menu__button"
+                onClick={() =>
+                  navigate(location.pathname + `?viewTask=${task._id}`)
+                }
+              >
                 Ver Tarea
               </button>
             </Menu.Item>

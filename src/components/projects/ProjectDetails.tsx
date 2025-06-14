@@ -3,6 +3,7 @@ import { ListFilterPlus } from "lucide-react";
 import TasksList from "../tasks/TasksList";
 import AddTaskModal from "../tasks/AddTaskModal";
 import EditTaskData from "../tasks/EditTaskData";
+import TaskDetailsModal from "../tasks/TaskDetailsModal";
 
 export default function ProjectDetails({ data }) {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function ProjectDetails({ data }) {
 
       <AddTaskModal />
       <EditTaskData />
+      <TaskDetailsModal />
     </div>
   );
 }
