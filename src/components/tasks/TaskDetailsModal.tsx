@@ -33,45 +33,46 @@ export default function TaskDetailsModal() {
     return <Navigate to={`/projects/${projectId}`} />;
   }
 
-  console.log("data:", data);
+  if (data)
+    return (
+      <Dialog.Root
+        lazyMount
+        size="lg"
+        placement="center"
+        open={open}
+        onOpenChange={() => navigate(location.pathname, { replace: true })}
+      >
+        <Portal>
+          <Dialog.Backdrop />
+          <Dialog.Positioner>
+            <Dialog.Content className="task-details-modal">
+              <p className="task-details-modal__created-at">Agregada el:</p>
+              <p className="task-details-modal__updated-at">
+                Actualizada por última vez el:
+              </p>
 
-  return (
-    <Dialog.Root
-      lazyMount
-      size="lg"
-      placement="center"
-      open={open}
-      onOpenChange={() => navigate(location.pathname, { replace: true })}
-    >
-      <Portal>
-        <Dialog.Backdrop />
-        <Dialog.Positioner>
-          <Dialog.Content className="task-details-modal">
-            <p className="task-details-modal__created-at">Agregada el:</p>
-            <p className="task-details-modal__updated-at">
-              Actualizada por última vez el:
-            </p>
+              <Dialog.Title className="task-details-modal__heading">
+                Tarea: {data.name}
+              </Dialog.Title>
 
-            <Dialog.Title className="task-details-modal__heading">
-              Tarea: Título aquí
-            </Dialog.Title>
+              <p className="task-details-modal__description">
+                Descripción: {data.description}
+              </p>
 
-            <p className="task-details-modal__description">Descripción:</p>
+              <div className="task-details-modal__status">
+                <label className="task-details-modal__status-label">
+                  Estado actual:
+                </label>
+              </div>
 
-            <div className="task-details-modal__status">
-              <label className="task-details-modal__status-label">
-                Estado actual:
-              </label>
-            </div>
-
-            <Dialog.CloseTrigger asChild>
-              <button type="button">
-                <X />
-              </button>
-            </Dialog.CloseTrigger>
-          </Dialog.Content>
-        </Dialog.Positioner>
-      </Portal>
-    </Dialog.Root>
-  );
+              <Dialog.CloseTrigger asChild>
+                <button type="button">
+                  <X />
+                </button>
+              </Dialog.CloseTrigger>
+            </Dialog.Content>
+          </Dialog.Positioner>
+        </Portal>
+      </Dialog.Root>
+    );
 }
