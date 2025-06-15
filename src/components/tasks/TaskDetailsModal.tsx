@@ -6,10 +6,11 @@ import {
 } from "react-router-dom";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { X } from "lucide-react";
+import { toast } from "sonner";
 import { useQuery } from "@tanstack/react-query";
 import { getTaskById } from "@/api/TaskApi";
-import { toast } from "sonner";
 import { formatDate } from "@/utils";
+import { statusTranslations } from "@/locales/es";
 
 export default function TaskDetailsModal() {
   const params = useParams();
@@ -69,9 +70,23 @@ export default function TaskDetailsModal() {
               </p>
 
               <div className="task-details-modal__status">
-                <label className="task-details-modal__status-label">
-                  Estado actual:
+                <label
+                  htmlFor="taskStatus"
+                  className="task-details-modal__status-label"
+                >
+                  Estado actual
                 </label>
+                <select
+                  id="taskStatus"
+                  className="task-details-modal__status-select"
+                  defaultValue={data.status}
+                >
+                  {Object.entries(statusTranslations).map(([key, value]) => (
+                    <option key={key} value={key}>
+                      {value}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               <Dialog.CloseTrigger asChild>

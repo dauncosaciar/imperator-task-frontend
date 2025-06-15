@@ -26,4 +26,35 @@
   &__status-label {
     font-weight: 700;
   }
+
+  &__status {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__status-label {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+  }
+
+  &__status-select {
+    display: block;
+    background-color: v.$white;
+    border: 1px solid v.$grey;
+    border-radius: 0.8rem;
+    padding: 1rem 1.6rem;
+    font-weight: 400;
+    width: 100%;
+    outline: 0;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+
+    &:focus {
+      box-shadow: 0 0 0 0.4rem color.adjust(v.$secondary, $lightness: 20%);
+      border: 1px solid v.$secondary;
+    }
+
+    @include m.phone {
+      width: 50%;
+    }
+  }
 }
