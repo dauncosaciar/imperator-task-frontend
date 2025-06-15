@@ -9,6 +9,7 @@ import { X } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { getTaskById } from "@/api/TaskApi";
 import { toast } from "sonner";
+import { formatDate } from "@/utils";
 
 export default function TaskDetailsModal() {
   const params = useParams();
@@ -46,9 +47,17 @@ export default function TaskDetailsModal() {
           <Dialog.Backdrop />
           <Dialog.Positioner>
             <Dialog.Content className="task-details-modal">
-              <p className="task-details-modal__created-at">Agregada el:</p>
+              <p className="task-details-modal__created-at">
+                <span className="task-details-modal__datetime-label">
+                  Creada el:
+                </span>{" "}
+                {formatDate(data.createdAt)}
+              </p>
               <p className="task-details-modal__updated-at">
-                Actualizada por última vez el:
+                <span className="task-details-modal__datetime-label">
+                  Actualizada por última vez el:
+                </span>{" "}
+                {formatDate(data.updatedAt)}
               </p>
 
               <Dialog.Title className="task-details-modal__heading">
@@ -56,7 +65,7 @@ export default function TaskDetailsModal() {
               </Dialog.Title>
 
               <p className="task-details-modal__description">
-                Descripción: {data.description}
+                {data.description}
               </p>
 
               <div className="task-details-modal__status">
