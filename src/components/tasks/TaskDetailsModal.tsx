@@ -1,3 +1,4 @@
+import { ChangeEvent } from "react";
 import {
   Navigate,
   useLocation,
@@ -7,10 +8,11 @@ import {
 import { Dialog, Portal } from "@chakra-ui/react";
 import { X } from "lucide-react";
 import { toast } from "sonner";
-import { useQuery } from "@tanstack/react-query";
-import { getTaskById } from "@/api/TaskApi";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { getTaskById, updateStatus } from "@/api/TaskApi";
 import { formatDate } from "@/utils";
 import { statusTranslations } from "@/locales/es";
+import { TaskStatus } from "@/types";
 
 export default function TaskDetailsModal() {
   const params = useParams();
@@ -29,6 +31,26 @@ export default function TaskDetailsModal() {
     refetchOnWindowFocus: false,
     retry: false
   });
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateStatus,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      queryClient.invalidateQueries({ queryKey: ["task", taskId] });
+      toast.success(data);
+    }
+  });
+
+  const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    const status = e.target.value as TaskStatus;
+    const data = { projectId, taskId, status };
+    mutate(data);
+  };
 
   if (isError) {
     toast.error(error.message, { id: "error" });
@@ -80,6 +102,7 @@ export default function TaskDetailsModal() {
                   id="taskStatus"
                   className="task-details-modal__status-select"
                   defaultValue={data.status}
+                  onChange={handleChange}
                 >
                   {Object.entries(statusTranslations).map(([key, value]) => (
                     <option key={key} value={key}>
