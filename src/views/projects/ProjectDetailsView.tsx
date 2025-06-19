@@ -10,7 +10,7 @@ export default function ProjectDetailsView() {
   const params = useParams();
   const projectId = params.projectId!;
 
-  const { data, isFetching, isError } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ["project", projectId],
     queryFn: () => getProjectById(projectId),
     refetchOnWindowFocus: false,
@@ -24,7 +24,7 @@ export default function ProjectDetailsView() {
     }
   }, [data]);
 
-  if (isFetching) return <Spinner spinnerText="Recuperando datos" />;
+  if (isLoading) return <Spinner spinnerText="Recuperando datos" />;
 
   if (isError) return <Navigate to="/404" />;
 

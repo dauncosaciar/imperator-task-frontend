@@ -13,6 +13,7 @@ import { getTaskById, updateStatus } from "@/api/TaskApi";
 import { formatDate } from "@/utils";
 import { statusTranslations } from "@/locales/es";
 import { TaskStatus } from "@/types";
+import Spinner from "../ui/Spinner";
 
 export default function TaskDetailsModal() {
   const params = useParams();
@@ -34,7 +35,7 @@ export default function TaskDetailsModal() {
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: updateStatus,
     onError: error => {
       toast.error(error.message);
@@ -98,18 +99,23 @@ export default function TaskDetailsModal() {
                 >
                   Estado actual
                 </label>
-                <select
-                  id="taskStatus"
-                  className="task-details-modal__status-select"
-                  defaultValue={data.status}
-                  onChange={handleChange}
-                >
-                  {Object.entries(statusTranslations).map(([key, value]) => (
-                    <option key={key} value={key}>
-                      {value}
-                    </option>
-                  ))}
-                </select>
+
+                <div className="task-details-modal__status-value">
+                  <select
+                    id="taskStatus"
+                    className="task-details-modal__status-select"
+                    defaultValue={data.status}
+                    onChange={handleChange}
+                  >
+                    {Object.entries(statusTranslations).map(([key, value]) => (
+                      <option key={key} value={key}>
+                        {value}
+                      </option>
+                    ))}
+                  </select>
+
+                  {isPending && <Spinner />}
+                </div>
               </div>
 
               <Dialog.CloseTrigger asChild>
