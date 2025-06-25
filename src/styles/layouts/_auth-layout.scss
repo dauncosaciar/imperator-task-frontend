@@ -1,0 +1,86 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Auth Layout */
+.auth-layout {
+  &__grid {
+    height: 100dvh;
+
+    @include m.grid(1, 0);
+
+    @include m.desktop {
+      @include m.grid(2, 0);
+    }
+
+    @include m.desktop-xl {
+      @include m.grid(3, 0);
+    }
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+  }
+
+  &__frame {
+    width: 100%;
+
+    @include m.phone {
+      width: 80%;
+    }
+
+    @include m.tablet {
+      width: 75%;
+    }
+
+    .logo {
+      width: 22rem;
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__hero {
+    background-image: linear-gradient(
+        to right,
+        color.adjust(v.$primary, $alpha: -0.15) 0%,
+        color.adjust(v.$primary, $alpha: -0.15) 100%
+      ),
+      url(/hero-background.jpg);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    color: v.$white;
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @include m.desktop-xl {
+      grid-column: 2 / 4;
+    }
+  }
+
+  &__welcome {
+    max-width: 50rem;
+  }
+
+  &__title {
+    font-size: 5rem;
+
+    @include m.heading-with-border(v.$white, v.$secondary);
+  }
+
+  &__text {
+    @include m.intro-text;
+
+    & {
+      color: v.$white;
+      font-size: 2.2rem;
+    }
+  }
+}
