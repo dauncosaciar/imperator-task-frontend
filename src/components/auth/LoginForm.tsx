@@ -1,3 +1,5 @@
+import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { LoginFormData } from "@/types";
 import ErrorMessage from "../form/ErrorMessage";
 
 type LoginFormProps = {

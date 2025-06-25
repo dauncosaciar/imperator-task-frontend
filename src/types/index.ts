@@ -1,5 +1,18 @@
 import { z } from "zod";
 
+/* Auth & Users schemas and types */
+export const authSchema = z.object({
+  name: z.string(),
+  lastName: z.string(),
+  email: z.string().email(),
+  password: z.string(),
+  passwordConfirmation: z.string()
+});
+
+export type Auth = z.infer<typeof authSchema>;
+
+export type LoginFormData = Pick<Auth, "email" | "password">;
+
 /* Projects schemas and types */
 export const projectSchema = z.object({
   _id: z.string(),

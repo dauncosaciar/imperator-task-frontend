@@ -4,6 +4,7 @@ import { LogIn } from "lucide-react";
 import { changeDocumentTitle } from "@/utils";
 import Form from "@/components/form/Form";
 import LoginForm from "@/components/auth/LoginForm";
+import { LoginFormData } from "@/types";
 
 export default function LoginView() {
   const initialValues: LoginFormData = {
@@ -21,8 +22,8 @@ export default function LoginView() {
     changeDocumentTitle("Inicia sesión");
   }, []);
 
-  const handleForm = () => {
-    console.log("iniciando sesión...");
+  const handleForm = (formData: LoginFormData) => {
+    console.log("formData:", formData);
   };
 
   return (
