@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { UserPlus } from "lucide-react";
 import { changeDocumentTitle } from "@/utils";
@@ -58,9 +59,9 @@ export default function RegisterView() {
           <p className="register-view__question-text">
             ¿Ya tienes cuenta en ImperatorTask?
           </p>
-          <a href="#" className="register-view__question-link">
+          <Link to="/auth/login" className="register-view__question-link">
             Inicia sesión
-          </a>
+          </Link>
         </div>
       </div>
     </div>

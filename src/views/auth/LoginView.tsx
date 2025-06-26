@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LogIn } from "lucide-react";
 import { changeDocumentTitle } from "@/utils";
@@ -47,9 +48,9 @@ export default function LoginView() {
 
         <div className="login-view__question">
           <p className="login-view__question-text">¿Nuevo en ImperatorTask?</p>
-          <a href="#" className="login-view__question-link">
+          <Link to="/auth/register" className="login-view__question-link">
             Regístrate
-          </a>
+          </Link>
         </div>
       </div>
     </div>
