@@ -1,0 +1,51 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Register View */
+.register-view {
+  &__heading {
+    font-family: v.$heading-font;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    @include m.intro-text;
+  }
+
+  .form {
+    padding: 0;
+    box-shadow: unset;
+    margin: 4rem 0 0;
+    max-width: unset;
+
+    &__submit {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+
+  &__question {
+    margin-top: 2rem;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 1rem;
+
+    &-text {
+      color: color.adjust(v.$black, $lightness: 50%);
+      text-align: center;
+    }
+
+    &-link {
+      color: v.$primary;
+      font-size: 1.4rem;
+      font-weight: 700;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
