@@ -14,10 +14,12 @@ type FormProps<T extends FieldValues> = {
   InnerForm: ComponentType<{
     register: UseFormRegister<T>;
     errors: FieldErrors<T>;
+    passwordWatch?: string;
     mutationExecuting: boolean;
   }>;
   register: UseFormRegister<T>;
   errors: FieldErrors<T>;
+  passwordWatch?: string;
   mutationExecuting: boolean;
   spinnerMessage: string;
   submitIcon: ElementType;
@@ -30,6 +32,7 @@ export default function Form<T extends FieldValues>({
   InnerForm,
   register,
   errors,
+  passwordWatch,
   mutationExecuting,
   spinnerMessage,
   submitIcon,
@@ -42,6 +45,7 @@ export default function Form<T extends FieldValues>({
       <InnerForm
         register={register}
         errors={errors}
+        passwordWatch={passwordWatch}
         mutationExecuting={mutationExecuting}
       />
 

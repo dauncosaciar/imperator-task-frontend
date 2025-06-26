@@ -22,7 +22,7 @@ export default function RegisterView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const password = watch("password");
+  const passwordWatch = watch("password");
 
   useEffect(() => {
     changeDocumentTitle("Regístrate");
@@ -46,6 +46,7 @@ export default function RegisterView() {
           InnerForm={RegisterForm}
           register={register}
           errors={errors}
+          passwordWatch={passwordWatch}
           // mutationExecuting={isPending}
           mutationExecuting={false}
           spinnerMessage="Creando proyecto"
