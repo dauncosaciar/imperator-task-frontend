@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 import Logo from "@/components/ui/Logo";
+import Notification from "@/components/ui/Notification";
 
 export default function AuthLayout() {
   const [mounted, setMounted] = useState(false);
@@ -35,6 +36,8 @@ export default function AuthLayout() {
           </div>
         )}
       </div>
+
+      <Notification />
     </div>
   );
 }

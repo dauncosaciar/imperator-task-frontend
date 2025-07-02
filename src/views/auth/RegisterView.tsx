@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { UserPlus } from "lucide-react";
+import { toast } from "sonner";
 import { changeDocumentTitle } from "@/utils";
 import Form from "@/components/form/Form";
 import RegisterForm from "@/components/auth/RegisterForm";
 import { RegistrationFormData } from "@/types";
+import { createAccount } from "@/api/AuthApi";
 
 export default function RegisterView() {
   const initialValues: RegistrationFormData = {
@@ -19,19 +22,29 @@ export default function RegisterView() {
   const {
     register,
     handleSubmit,
+    reset,
     watch,
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
   const passwordWatch = watch("password");
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: createAccount,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      reset();
+    }
+  });
+
   useEffect(() => {
     changeDocumentTitle("Regístrate");
   }, []);
 
-  const handleForm = (formData: RegistrationFormData) => {
-    console.log("formData:", formData);
-  };
+  const handleForm = (formData: RegistrationFormData) => mutate(formData);
 
   return (
     <div className="register-view">
@@ -48,9 +61,8 @@ export default function RegisterView() {
           register={register}
           errors={errors}
           passwordWatch={passwordWatch}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
-          spinnerMessage="Creando proyecto"
+          mutationExecuting={isPending}
+          spinnerMessage="Creando cuenta"
           submitIcon={UserPlus}
           submitText="Crear Cuenta"
         />
