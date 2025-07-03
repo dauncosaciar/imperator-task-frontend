@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { PinInput, PinInputValueChangeDetails } from "@chakra-ui/react";
+import { toast } from "sonner";
 import { changeDocumentTitle } from "@/utils";
+import { confirmAccount } from "@/api/AuthApi";
+import Spinner from "@/components/ui/Spinner";
 
 export default function ConfirmAccountView() {
   const [token, setToken] = useState(["", "", "", "", "", ""]);
+
+  const navigate = useNavigate();
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: confirmAccount,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      navigate("/auth/login");
+    }
+  });
 
   useEffect(() => {
     changeDocumentTitle("Confirma tu cuenta");
@@ -15,7 +32,7 @@ export default function ConfirmAccountView() {
   };
 
   const handleComplete = (e: PinInputValueChangeDetails) => {
-    console.log(e.valueAsString);
+    mutate({ token: e.valueAsString });
   };
 
   return (
@@ -48,6 +65,8 @@ export default function ConfirmAccountView() {
               </PinInput.Control>
             </PinInput.Root>
           </div>
+
+          {isPending && <Spinner spinnerText="Confirmando cuenta" />}
         </form>
 
         <div className="confirm-account-view__question">
