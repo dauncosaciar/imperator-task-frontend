@@ -1,11 +1,22 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { PinInput, PinInputValueChangeDetails } from "@chakra-ui/react";
 import { changeDocumentTitle } from "@/utils";
 
 export default function ConfirmAccountView() {
+  const [token, setToken] = useState(["", "", "", "", "", ""]);
+
   useEffect(() => {
     changeDocumentTitle("Confirma tu cuenta");
   }, []);
+
+  const handleChange = (e: PinInputValueChangeDetails) => {
+    setToken(e.value);
+  };
+
+  const handleComplete = (e: PinInputValueChangeDetails) => {
+    console.log(e.valueAsString);
+  };
 
   return (
     <div className="confirm-account-view">
@@ -19,6 +30,23 @@ export default function ConfirmAccountView() {
         <form className="form">
           <div className="form__field">
             <label className="form__label">Código de 6 dígitos</label>
+
+            <PinInput.Root
+              size="2xl"
+              value={token}
+              onValueChange={handleChange}
+              onValueComplete={handleComplete}
+            >
+              <PinInput.HiddenInput />
+              <PinInput.Control className="form__control">
+                <PinInput.Input index={0} className="form__input" />
+                <PinInput.Input index={1} className="form__input" />
+                <PinInput.Input index={2} className="form__input" />
+                <PinInput.Input index={3} className="form__input" />
+                <PinInput.Input index={4} className="form__input" />
+                <PinInput.Input index={5} className="form__input" />
+              </PinInput.Control>
+            </PinInput.Root>
           </div>
         </form>
 

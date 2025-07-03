@@ -20,9 +20,21 @@
     margin: 4rem 0 0;
     max-width: unset;
 
-    &__submit {
-      width: 100%;
-      justify-content: center;
+    @include m.phone {
+      &__control {
+        display: flex;
+        gap: 1rem;
+      }
+    }
+
+    &__input {
+      font-family: v.$code-font;
+      color: v.$primary;
+      font-weight: 700;
+      font-size: 1.8rem;
+      width: 4rem;
+      height: 4rem;
+      padding: 1.2rem;
     }
   }
 
