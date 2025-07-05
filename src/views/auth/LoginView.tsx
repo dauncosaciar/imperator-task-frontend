@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { LogIn } from "lucide-react";
+import { toast } from "sonner";
 import { changeDocumentTitle } from "@/utils";
 import Form from "@/components/form/Form";
 import LoginForm from "@/components/auth/LoginForm";
 import { LoginFormData } from "@/types";
+import { authenticateUser } from "@/api/AuthApi";
 
 export default function LoginView() {
   const initialValues: LoginFormData = {
@@ -19,13 +22,21 @@ export default function LoginView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: authenticateUser,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+    }
+  });
+
   useEffect(() => {
     changeDocumentTitle("Inicia sesión");
   }, []);
 
-  const handleForm = (formData: LoginFormData) => {
-    console.log("formData:", formData);
-  };
+  const handleForm = (formData: LoginFormData) => mutate(formData);
 
   return (
     <div className="login-view">
@@ -39,9 +50,8 @@ export default function LoginView() {
           InnerForm={LoginForm}
           register={register}
           errors={errors}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
-          spinnerMessage="Creando proyecto"
+          mutationExecuting={isPending}
+          spinnerMessage="Iniciando sesión"
           submitIcon={LogIn}
           submitText="Iniciar Sesión"
         />

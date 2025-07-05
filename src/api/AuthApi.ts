@@ -1,6 +1,7 @@
 import { isAxiosError } from "axios";
 import {
   ConfirmToken,
+  LoginFormData,
   RegistrationFormData,
   RequestConfirmationCodeFormData
 } from "@/types";
@@ -35,6 +36,18 @@ export async function requestConfirmationCode(
 ) {
   try {
     const url = "/auth/request-code";
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error);
+    }
+  }
+}
+
+export async function authenticateUser(formData: LoginFormData) {
+  try {
+    const url = "/auth/login";
     const { data } = await api.post<string>(url, formData);
     return data;
   } catch (error) {
