@@ -19,6 +19,8 @@ export type RegistrationFormData = Pick<
   "name" | "lastName" | "email" | "password" | "passwordConfirmation"
 >;
 
+export type RequestConfirmationCodeFormData = Pick<Auth, "email">;
+
 export type ConfirmToken = Pick<Auth, "token">;
 
 /* Projects schemas and types */

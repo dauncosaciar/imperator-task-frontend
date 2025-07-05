@@ -73,7 +73,10 @@ export default function ConfirmAccountView() {
           <p className="confirm-account-view__question-text">
             ¿Venció tu token de confirmación?
           </p>
-          <Link to="#" className="confirm-account-view__question-link">
+          <Link
+            to="/auth/request-code"
+            className="confirm-account-view__question-link"
+          >
             Solicita uno nuevo
           </Link>
         </div>
