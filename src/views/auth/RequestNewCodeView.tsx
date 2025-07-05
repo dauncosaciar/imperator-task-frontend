@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { RectangleEllipsis } from "lucide-react";
 import Form from "@/components/form/Form";
 import { changeDocumentTitle } from "@/utils";
 import NewConfirmationCodeForm from "@/components/auth/NewConfirmationCodeForm";
 import { RequestConfirmationCodeFormData } from "@/types";
+import { requestConfirmationCode } from "@/api/AuthApi";
+import { toast } from "sonner";
 
 export default function RequestNewCodeView() {
   const initialValues: RequestConfirmationCodeFormData = {
@@ -19,13 +22,23 @@ export default function RequestNewCodeView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: requestConfirmationCode,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      reset();
+    }
+  });
+
   useEffect(() => {
     changeDocumentTitle("Solicita un nuevo código de confirmación de cuenta");
   }, []);
 
-  const handleForm = (formData: RequestConfirmationCodeFormData) => {
-    console.log("formData:", formData);
-  };
+  const handleForm = (formData: RequestConfirmationCodeFormData) =>
+    mutate(formData);
 
   return (
     <div className="request-new-code-view">
@@ -41,8 +54,7 @@ export default function RequestNewCodeView() {
           InnerForm={NewConfirmationCodeForm}
           register={register}
           errors={errors}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
+          mutationExecuting={isPending}
           spinnerMessage="Solicitando código"
           submitIcon={RectangleEllipsis}
           submitText="Solicitar Código"
