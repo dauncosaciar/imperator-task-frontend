@@ -1,6 +1,7 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
 import { LoginFormData } from "@/types";
 import ErrorMessage from "../form/ErrorMessage";
+import { Link } from "react-router-dom";
 
 type LoginFormProps = {
   register: UseFormRegister<LoginFormData>;
@@ -59,6 +60,12 @@ export default function LoginForm({
         {errors.password && (
           <ErrorMessage>{errors.password.message}</ErrorMessage>
         )}
+      </div>
+
+      <div className="form__forgot">
+        <Link to="#" className="form__forgot-link">
+          ¿Olvidaste tu contraseña?
+        </Link>
       </div>
     </>
   );
