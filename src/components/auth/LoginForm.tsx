@@ -63,7 +63,7 @@ export default function LoginForm({
       </div>
 
       <div className="form__forgot">
-        <Link to="#" className="form__forgot-link">
+        <Link to="/auth/forgot-password" className="form__forgot-link">
           ¿Olvidaste tu contraseña?
         </Link>
       </div>

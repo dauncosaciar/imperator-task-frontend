@@ -21,6 +21,8 @@ export type RegistrationFormData = Pick<
 
 export type RequestConfirmationCodeFormData = Pick<Auth, "email">;
 
+export type ForgotPasswordFormData = Pick<Auth, "email">;
+
 export type ConfirmToken = Pick<Auth, "token">;
 
 /* Projects schemas and types */
