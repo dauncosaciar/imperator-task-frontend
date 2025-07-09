@@ -2,10 +2,13 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { SendHorizontal } from "lucide-react";
+import { toast } from "sonner";
 import Form from "@/components/form/Form";
 import { changeDocumentTitle } from "@/utils";
 import ForgotPasswordForm from "@/components/auth/ForgotPasswordForm";
 import { ForgotPasswordFormData } from "@/types";
+import { useMutation } from "@tanstack/react-query";
+import { forgotPassword } from "@/api/AuthApi";
 
 export default function ForgotPasswordView() {
   const initialValues: ForgotPasswordFormData = {
@@ -19,13 +22,22 @@ export default function ForgotPasswordView() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: forgotPassword,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      reset();
+    }
+  });
+
   useEffect(() => {
     changeDocumentTitle("¿Olvidaste tu contraseña?");
   }, []);
 
-  const handleForm = (formData: ForgotPasswordFormData) => {
-    console.log("formData:", formData);
-  };
+  const handleForm = (formData: ForgotPasswordFormData) => mutate(formData);
 
   return (
     <div className="forgot-password-view">
@@ -43,8 +55,7 @@ export default function ForgotPasswordView() {
           InnerForm={ForgotPasswordForm}
           register={register}
           errors={errors}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
+          mutationExecuting={isPending}
           spinnerMessage="Enviando instrucciones"
           submitIcon={SendHorizontal}
           submitText="Enviar Instrucciones"
