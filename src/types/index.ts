@@ -23,6 +23,11 @@ export type RequestConfirmationCodeFormData = Pick<Auth, "email">;
 
 export type ForgotPasswordFormData = Pick<Auth, "email">;
 
+export type NewPasswordFormData = Pick<
+  Auth,
+  "password" | "passwordConfirmation"
+>;
+
 export type ConfirmToken = Pick<Auth, "token">;
 
 /* Projects schemas and types */
