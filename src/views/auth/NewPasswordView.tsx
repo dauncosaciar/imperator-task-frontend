@@ -2,9 +2,18 @@ import { useEffect, useState } from "react";
 import { changeDocumentTitle } from "@/utils";
 import NewPasswordToken from "@/components/auth/NewPasswordToken";
 import NewPasswordChange from "@/components/auth/NewPasswordChange";
+import { ConfirmToken } from "@/types";
 
 export default function NewPasswordView() {
-  const [isValidToken, setIsValidToken] = useState(true);
+  const [token, setToken] = useState<ConfirmToken["token"][]>([
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
+  ]);
+  const [isValidToken, setIsValidToken] = useState(false);
 
   useEffect(() => {
     changeDocumentTitle("Reestablece tu contraseña");
@@ -19,7 +28,15 @@ export default function NewPasswordView() {
       </p>
 
       <div className="new-password-view__content">
-        {!isValidToken ? <NewPasswordToken /> : <NewPasswordChange />}
+        {!isValidToken ? (
+          <NewPasswordToken
+            token={token}
+            setToken={setToken}
+            setIsValidToken={setIsValidToken}
+          />
+        ) : (
+          <NewPasswordChange />
+        )}
       </div>
     </div>
   );

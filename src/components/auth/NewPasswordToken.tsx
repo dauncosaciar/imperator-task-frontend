@@ -1,13 +1,40 @@
+import { Dispatch, SetStateAction } from "react";
 import { Link } from "react-router-dom";
+import { useMutation } from "@tanstack/react-query";
 import { PinInput, PinInputValueChangeDetails } from "@chakra-ui/react";
+import { toast } from "sonner";
+import { ConfirmToken } from "@/types";
+import { validateToken } from "@/api/AuthApi";
+import Spinner from "../ui/Spinner";
 
-export default function NewPasswordToken() {
+type NewPasswordTokenProps = {
+  token: ConfirmToken["token"][];
+  setToken: Dispatch<SetStateAction<string[]>>;
+  setIsValidToken: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function NewPasswordToken({
+  token,
+  setToken,
+  setIsValidToken
+}: NewPasswordTokenProps) {
+  const { isPending, mutate } = useMutation({
+    mutationFn: validateToken,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      toast.success(data);
+      setIsValidToken(true);
+    }
+  });
+
   const handleChange = (e: PinInputValueChangeDetails) => {
-    console.log(e.value);
+    setToken(e.value);
   };
 
   const handleComplete = (e: PinInputValueChangeDetails) => {
-    console.log(e.valueAsString);
+    mutate({ token: e.valueAsString });
   };
 
   return (
@@ -18,7 +45,7 @@ export default function NewPasswordToken() {
 
           <PinInput.Root
             size="2xl"
-            value={["1", "2", "3", "4", "5", "6"]}
+            value={token}
             onValueChange={handleChange}
             onValueComplete={handleComplete}
           >
@@ -34,7 +61,7 @@ export default function NewPasswordToken() {
           </PinInput.Root>
         </div>
 
-        {/* {isPending && <Spinner />} */}
+        {isPending && <Spinner spinnerText="Validando token" />}
       </form>
 
       <div className="new-password-token__question">
