@@ -3,6 +3,7 @@ import {
   ConfirmToken,
   ForgotPasswordFormData,
   LoginFormData,
+  NewPasswordFormData,
   RegistrationFormData,
   RequestConfirmationCodeFormData
 } from "@/types";
@@ -77,7 +78,24 @@ export async function validateToken(formData: ConfirmToken) {
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
-      console.log("error:", error);
+      throw new Error(error.response.data.error);
+    }
+  }
+}
+
+export async function updatePasswordWithToken({
+  formData,
+  token
+}: {
+  formData: NewPasswordFormData;
+  token: ConfirmToken["token"];
+}) {
+  try {
+    const url = `/auth/update-password/${token}`;
+    const { data } = await api.post<string>(url, formData);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
     }
   }

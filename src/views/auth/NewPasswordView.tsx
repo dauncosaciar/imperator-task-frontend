@@ -35,7 +35,7 @@ export default function NewPasswordView() {
             setIsValidToken={setIsValidToken}
           />
         ) : (
-          <NewPasswordChange />
+          <NewPasswordChange token={token.join("")} />
         )}
       </div>
     </div>
