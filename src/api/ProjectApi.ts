@@ -19,8 +19,15 @@ export async function createProject(formData: ProjectFormData) {
 }
 
 export async function getProjects() {
+  const token = localStorage.getItem("IMPERATOR_AUTH_TOKEN");
+
   try {
-    const { data } = await api.get("/projects");
+    const { data } = await api.get("/projects", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
+
     const response = dashboardProjectSchema.safeParse(data);
 
     if (response.success) {
