@@ -1,18 +1,18 @@
-import { useEffect, useState } from "react";
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useBreakpointValue } from "@chakra-ui/react";
 import Logo from "@/components/ui/Logo";
 import Notification from "@/components/ui/Notification";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function AuthLayout() {
-  const [mounted, setMounted] = useState(false);
   const isMobile = useBreakpointValue({ base: true, lg: false })!;
+  const location = useLocation();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const { data: user, isLoading } = useAuth();
 
-  if (!mounted) return null;
+  if (isLoading) return null;
+
+  if (user && location.pathname === "/auth/login") return <Navigate to="/" />;
 
   return (
     <div className="auth-layout">
