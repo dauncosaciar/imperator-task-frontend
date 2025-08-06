@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { CircleUser } from "lucide-react";
 import { Menu, Portal } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
@@ -8,9 +9,12 @@ export default function AvatarMenu() {
 
   const queryClient = useQueryClient();
 
+  const navigate = useNavigate();
+
   const logout = () => {
+    queryClient.removeQueries();
     localStorage.removeItem("IMPERATOR_AUTH_TOKEN");
-    queryClient.invalidateQueries({ queryKey: ["user"] });
+    navigate("/auth/login");
   };
 
   if (user)

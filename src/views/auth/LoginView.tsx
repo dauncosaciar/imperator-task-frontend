@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { LogIn } from "lucide-react";
@@ -19,8 +19,11 @@ export default function LoginView() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
+
+  const navigate = useNavigate();
 
   const { isPending, mutate } = useMutation({
     mutationFn: authenticateUser,
@@ -28,7 +31,8 @@ export default function LoginView() {
       toast.error(error.message);
     },
     onSuccess: () => {
-      toast.success("Iniciando sesión...");
+      navigate("/");
+      reset();
     }
   });
 
