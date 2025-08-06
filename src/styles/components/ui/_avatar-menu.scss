@@ -30,6 +30,7 @@
     }
 
     &-email {
+      color: color.adjust(v.$black, $lightness: 50%);
       font-size: 1.4rem;
     }
   }
