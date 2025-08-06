@@ -1,9 +1,17 @@
 import { CircleUser } from "lucide-react";
 import { Menu, Portal } from "@chakra-ui/react";
+import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function AvatarMenu() {
   const { data: user } = useAuth();
+
+  const queryClient = useQueryClient();
+
+  const logout = () => {
+    localStorage.removeItem("IMPERATOR_AUTH_TOKEN");
+    queryClient.invalidateQueries({ queryKey: ["user"] });
+  };
 
   if (user)
     return (
@@ -32,9 +40,13 @@ export default function AvatarMenu() {
                 <a className="avatar-menu__nav-link" href="#">
                   Mi Perfil
                 </a>
-                <a className="avatar-menu__nav-link" href="#">
+                <button
+                  type="button"
+                  className="avatar-menu__nav-link"
+                  onClick={logout}
+                >
                   Cerrar Sesión
-                </a>
+                </button>
               </nav>
             </Menu.Content>
           </Menu.Positioner>
