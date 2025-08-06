@@ -30,6 +30,19 @@ export type NewPasswordFormData = Pick<
 
 export type ConfirmToken = Pick<Auth, "token">;
 
+/* Users schemas and types */
+export const userSchema = authSchema
+  .pick({
+    name: true,
+    lastName: true,
+    email: true
+  })
+  .extend({
+    _id: z.string()
+  });
+
+export type User = z.infer<typeof userSchema>;
+
 /* Projects schemas and types */
 export const projectSchema = z.object({
   _id: z.string(),

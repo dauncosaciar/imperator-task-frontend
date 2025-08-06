@@ -16,25 +16,26 @@ export default function AppLayout() {
 
   if (isError) return <Navigate to="/auth/login" />;
 
-  return (
-    <div className="app-layout">
-      <Header isMobile={isMobile} onOpen={() => setOpenDrawer(true)} />
+  if (data)
+    return (
+      <div className="app-layout">
+        <Header isMobile={isMobile} onOpen={() => setOpenDrawer(true)} />
 
-      <div className="app-layout__sections">
-        <Sidebar
-          isMobile={isMobile}
-          openDrawer={openDrawer}
-          setOpenDrawer={setOpenDrawer}
-        />
+        <div className="app-layout__sections">
+          <Sidebar
+            isMobile={isMobile}
+            openDrawer={openDrawer}
+            setOpenDrawer={setOpenDrawer}
+          />
 
-        <div className="app-layout__frame">
-          <div className="app-layout__content">
-            <Outlet />
+          <div className="app-layout__frame">
+            <div className="app-layout__content">
+              <Outlet />
+            </div>
           </div>
         </div>
-      </div>
 
-      <Notification />
-    </div>
-  );
+        <Notification />
+      </div>
+    );
 }
