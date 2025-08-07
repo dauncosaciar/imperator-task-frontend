@@ -6,6 +6,12 @@
 .avatar-menu {
   @include m.menu;
 
+  &__content {
+    @include m.tablet {
+      width: 30rem;
+    }
+  }
+
   &__info {
     display: flex;
     align-items: center;

@@ -103,6 +103,7 @@
 // Menus
 @mixin menu {
   width: 95%;
+  max-width: 100%;
 
   @include tablet {
     width: 30rem;

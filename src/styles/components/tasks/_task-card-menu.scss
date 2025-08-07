@@ -15,6 +15,10 @@
     align-items: flex-start;
     font-size: 1.4rem;
     padding: 0;
+
+    @include m.tablet {
+      width: 15rem;
+    }
   }
 
   &__item {
