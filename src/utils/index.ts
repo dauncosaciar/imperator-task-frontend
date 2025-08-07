@@ -19,3 +19,13 @@ export const formatDate = (isoString: string): string => {
 export const changeDocumentTitle = (title: string) => {
   document.title = `ImperatorTask | ${title}`;
 };
+
+export const getUserInitialsUppercase = (
+  name: string,
+  lastName: string
+): string => {
+  const nameInitial = name.charAt(0).toUpperCase();
+  const lastNameInitial = lastName.charAt(0).toUpperCase();
+
+  return nameInitial + lastNameInitial;
+};

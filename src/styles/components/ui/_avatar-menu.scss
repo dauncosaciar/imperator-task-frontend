@@ -49,13 +49,18 @@
 }
 
 .app-avatar {
+  .user-initials {
+    &__circle {
+      transition: background-color 0.15s ease-in-out;
+
+      &:hover {
+        background-color: color.adjust(v.$primary, $lightness: -10%);
+      }
+    }
+  }
+
   @include m.tablet {
     width: 3.5rem;
     margin-right: 3rem;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
   }
 }

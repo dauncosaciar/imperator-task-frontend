@@ -22,7 +22,7 @@ export default function AvatarMenu() {
       <Menu.Root>
         <Menu.Trigger asChild>
           <div className="app-avatar">
-            <UserInitials />
+            <UserInitials user={user} />
           </div>
         </Menu.Trigger>
         <Portal>
@@ -30,7 +30,7 @@ export default function AvatarMenu() {
             <Menu.Content className="avatar-menu__content">
               <div className="avatar-menu__info">
                 <div className="avatar-menu__initials">
-                  <UserInitials />
+                  <UserInitials user={user} />
                 </div>
                 <div className="avatar-menu__user">
                   <p className="avatar-menu__user-name">
