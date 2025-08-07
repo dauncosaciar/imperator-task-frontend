@@ -1,0 +1,20 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* User Initials */
+.user-initials {
+  &__circle {
+    background-color: v.$primary;
+    border-radius: 50%;
+    color: v.$secondary;
+    font-family: v.$code-font;
+    font-weight: 700;
+    font-size: 1.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { CircleUser } from "lucide-react";
 import { Menu, Portal } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
+import UserInitials from "./UserInitials";
 
 export default function AvatarMenu() {
   const { data: user } = useAuth();
@@ -22,15 +22,15 @@ export default function AvatarMenu() {
       <Menu.Root>
         <Menu.Trigger asChild>
           <div className="app-avatar">
-            <CircleUser color="#0f6130" />
+            <UserInitials />
           </div>
         </Menu.Trigger>
         <Portal>
           <Menu.Positioner className="avatar-menu">
             <Menu.Content className="avatar-menu__content">
               <div className="avatar-menu__info">
-                <div className="avatar-menu__image">
-                  <CircleUser color="#0f6130" />
+                <div className="avatar-menu__initials">
+                  <UserInitials />
                 </div>
                 <div className="avatar-menu__user">
                   <p className="avatar-menu__user-name">

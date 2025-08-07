@@ -15,12 +15,15 @@
     border-bottom: 1px solid v.$grey;
   }
 
-  &__image {
+  &__initials {
     flex-basis: 5rem;
 
-    svg {
-      width: 100%;
-      height: 100%;
+    .user-initials {
+      &__circle {
+        font-size: 2.5rem;
+        width: 5rem;
+        height: 5rem;
+      }
     }
   }
 
