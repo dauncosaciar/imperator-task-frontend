@@ -5,6 +5,7 @@ import DashboardView from "@/views/dashboard/DashboardView";
 import CreateProjectView from "@/views/projects/CreateProjectView";
 import ProjectDetailsView from "@/views/projects/ProjectDetailsView";
 import EditProjectView from "@/views/projects/EditProjectView";
+import ProjectTeamView from "@/views/projects/ProjectTeamView";
 import LoginView from "@/views/auth/LoginView";
 import RegisterView from "@/views/auth/RegisterView";
 import ConfirmAccountView from "@/views/auth/ConfirmAccountView";
@@ -23,6 +24,10 @@ export default function Router() {
           <Route
             path="/projects/:projectId/edit"
             element={<EditProjectView />}
+          />
+          <Route
+            path="/projects/:projectId/team"
+            element={<ProjectTeamView />}
           />
         </Route>
 

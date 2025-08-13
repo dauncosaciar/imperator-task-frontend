@@ -1,5 +1,5 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { ListFilterPlus } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { ListFilterPlus, Users } from "lucide-react";
 import TasksList from "../tasks/TasksList";
 import AddTaskModal from "../tasks/AddTaskModal";
 import EditTaskData from "../tasks/EditTaskData";
@@ -24,6 +24,13 @@ export default function ProjectDetails({ data }) {
         >
           <ListFilterPlus /> Agregar Tarea
         </button>
+
+        <Link
+          className="project-details__nav-link project-details__nav-link--secondary"
+          to="team"
+        >
+          <Users /> Colaboradores
+        </Link>
       </nav>
 
       <TasksList tasks={data.tasks} />

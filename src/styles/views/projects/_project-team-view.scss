@@ -1,8 +1,8 @@
 @use "@/styles/abstracts/variables" as v;
 @use "@/styles/abstracts/mixins" as m;
 
-/* Project Details */
-.project-details {
+/* Project Team View */
+.project-team-view {
   &__heading {
     @include m.heading-with-border(v.$black, v.$grey);
   }
