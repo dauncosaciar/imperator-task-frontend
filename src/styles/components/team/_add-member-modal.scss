@@ -20,4 +20,16 @@
     margin: 4rem 0 0;
     max-width: unset;
   }
+
+  .basic-message {
+    &__text {
+      color: v.$red;
+      font-size: 1.6rem;
+
+      svg {
+        width: 2.4rem;
+        height: 2.4rem;
+      }
+    }
+  }
 }
