@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Add Member Modal */
+.add-member-modal {
+  @include m.modal;
+
+  &__heading {
+    @include m.heading-with-border(v.$black, v.$grey);
+  }
+
+  &__text {
+    @include m.intro-text;
+  }
+
+  .form {
+    padding: 0;
+    box-shadow: unset;
+    margin: 4rem 0 0;
+    max-width: unset;
+  }
+}

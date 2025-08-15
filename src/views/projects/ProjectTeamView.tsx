@@ -1,5 +1,6 @@
-import { Undo2, UserRoundPlus } from "lucide-react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { Undo2, UserRoundPlus } from "lucide-react";
+import AddMemberModal from "@/components/team/AddMemberModal";
 
 export default function ProjectTeamView() {
   const navigate = useNavigate();
@@ -29,6 +30,8 @@ export default function ProjectTeamView() {
           <Undo2 /> Volver al Proyecto
         </Link>
       </nav>
+
+      <AddMemberModal />
     </div>
   );
 }
