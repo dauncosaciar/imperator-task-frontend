@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { Dialog, Portal } from "@chakra-ui/react";
-import { Plus, X } from "lucide-react";
+import { Frown, UserRoundSearch, X } from "lucide-react";
 import Form from "../form/Form";
 import TeamMemberForm from "./TeamMemberForm";
 import { TeamMemberFormData } from "@/types";
+import { findUserByEmail } from "@/api/TeamApi";
+import BasicMessage from "../ui/BasicMessage";
 
 export default function AddMemberModal() {
   const navigate = useNavigate();
@@ -31,6 +34,10 @@ export default function AddMemberModal() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const mutation = useMutation({
+    mutationFn: findUserByEmail
+  });
+
   // With this useEffect, when the modal closes, the form data is reset whether the user submits the data or decides to close it without submitting anything
   useEffect(() => {
     if (!open) {
@@ -38,8 +45,12 @@ export default function AddMemberModal() {
     }
   }, [open, reset]);
 
-  const handleForm = (formData: TeamMemberFormData) => {
-    console.log("formData:", formData);
+  const handleForm = async (formData: TeamMemberFormData) => {
+    const data = {
+      projectId,
+      formData
+    };
+    mutation.mutate(data);
   };
 
   return (
@@ -68,12 +79,17 @@ export default function AddMemberModal() {
               InnerForm={TeamMemberForm}
               register={register}
               errors={errors}
-              // mutationExecuting={isPending}
-              mutationExecuting={false}
+              mutationExecuting={mutation.isPending}
               spinnerMessage="Buscando"
-              submitIcon={Plus}
+              submitIcon={UserRoundSearch}
               submitText="Buscar Usuario"
             />
+
+            {mutation.error && (
+              <BasicMessage>
+                <Frown /> {mutation.error.message}
+              </BasicMessage>
+            )}
 
             <Dialog.CloseTrigger asChild>
               <button type="button">

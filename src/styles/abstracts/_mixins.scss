@@ -104,6 +104,13 @@
   font-weight: 300;
 }
 
+// @mixin message-text($text-color) {
+//   color: $text-color;
+//   font-weight: 700;
+//   margin: 0;
+//   text-align: center;
+// }
+
 // Menus
 @mixin menu {
   width: 95%;
