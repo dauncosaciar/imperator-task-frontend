@@ -9,6 +9,7 @@ import TeamMemberForm from "./TeamMemberForm";
 import { TeamMemberFormData } from "@/types";
 import { findUserByEmail } from "@/api/TeamApi";
 import BasicMessage from "../ui/BasicMessage";
+import MemberSearchResult from "./MemberSearchResult";
 
 export default function AddMemberModal() {
   const navigate = useNavigate();
@@ -90,6 +91,8 @@ export default function AddMemberModal() {
                 <Frown /> {mutation.error.message}
               </BasicMessage>
             )}
+
+            {mutation.data && <MemberSearchResult user={mutation.data} />}
 
             <Dialog.CloseTrigger asChild>
               <button type="button">
