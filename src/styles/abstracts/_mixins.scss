@@ -104,13 +104,6 @@
   font-weight: 300;
 }
 
-// @mixin message-text($text-color) {
-//   color: $text-color;
-//   font-weight: 700;
-//   margin: 0;
-//   text-align: center;
-// }
-
 // Menus
 @mixin menu {
   width: 95%;
@@ -147,6 +140,20 @@
 
   @include tablet {
     padding: 3rem;
+  }
+}
+
+// Navs
+@mixin inner-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @include phone {
+    flex-direction: row;
+    align-items: center;
   }
 }
 
