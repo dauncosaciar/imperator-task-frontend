@@ -71,7 +71,7 @@ export default function AddMemberModal() {
             </Dialog.Title>
 
             <p className="add-member-modal__text">
-              Busca el Colaborador por su email para agregarlo.
+              Busca el Usuario por su email para agregarlo como Colaborador.
             </p>
 
             <Form
