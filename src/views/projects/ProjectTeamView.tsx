@@ -1,37 +1,63 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { Undo2, UserRoundPlus } from "lucide-react";
 import AddMemberModal from "@/components/team/AddMemberModal";
+import { getProjectTeam } from "@/api/TeamApi";
+import Spinner from "@/components/ui/Spinner";
+import { changeDocumentTitle } from "@/utils";
 
 export default function ProjectTeamView() {
   const navigate = useNavigate();
   const params = useParams();
   const projectId = params.projectId!;
 
-  return (
-    <div className="project-team-view">
-      <h1 className="project-team-view__heading">Administrar Equipo</h1>
-      <p className="project-team-view__description">
-        Gestiona el equipo de trabajo de este Proyecto.
-      </p>
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["projectTeam", projectId],
+    queryFn: () => getProjectTeam(projectId),
+    refetchOnWindowFocus: false,
+    retry: false
+  });
 
-      <nav className="project-team-view__nav">
-        <button
-          type="button"
-          className="project-team-view__nav-link"
-          onClick={() => navigate(location.pathname + "?newMember=true")}
-        >
-          <UserRoundPlus /> Agregar Colaborador
-        </button>
+  useEffect(() => {
+    if (data) {
+      const documentTitle = `Colaboradores del Proyecto: ${data.projectName}`;
+      changeDocumentTitle(documentTitle);
+    }
+  }, [data]);
 
-        <Link
-          className="project-team-view__nav-link project-team-view__nav-link--secondary"
-          to={`/projects/${projectId}`}
-        >
-          <Undo2 /> Volver al Proyecto
-        </Link>
-      </nav>
+  if (isLoading) return <Spinner spinnerText="Recuperando datos" />;
 
-      <AddMemberModal />
-    </div>
-  );
+  if (isError) return <Navigate to="/404" />;
+
+  if (data)
+    return (
+      <div className="project-team-view">
+        <h1 className="project-team-view__heading">
+          Colaboradores del Proyecto: <span>{data.projectName}</span>
+        </h1>
+        <p className="project-team-view__description">
+          Gestiona el equipo de trabajo de este Proyecto.
+        </p>
+
+        <nav className="project-team-view__nav">
+          <button
+            type="button"
+            className="project-team-view__nav-link"
+            onClick={() => navigate(location.pathname + "?newMember=true")}
+          >
+            <UserRoundPlus /> Agregar Colaborador
+          </button>
+
+          <Link
+            className="project-team-view__nav-link project-team-view__nav-link--secondary"
+            to={`/projects/${projectId}`}
+          >
+            <Undo2 /> Volver al Proyecto
+          </Link>
+        </nav>
+
+        <AddMemberModal />
+      </div>
+    );
 }

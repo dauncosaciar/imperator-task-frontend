@@ -37,3 +37,15 @@ export async function addUserToProject({
     }
   }
 }
+
+export async function getProjectTeam(projectId: Project["_id"]) {
+  try {
+    const url = `/projects/${projectId}/team`;
+    const { data } = await api.get(url);
+    return data;
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error);
+    }
+  }
+}
