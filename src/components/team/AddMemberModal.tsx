@@ -54,6 +54,11 @@ export default function AddMemberModal() {
     mutation.mutate(data);
   };
 
+  const resetData = () => {
+    reset(); // reset search form
+    mutation.reset(); // reset mutation data state
+  };
+
   return (
     <Dialog.Root
       lazyMount
@@ -92,7 +97,9 @@ export default function AddMemberModal() {
               </BasicMessage>
             )}
 
-            {mutation.data && <MemberSearchResult user={mutation.data} />}
+            {mutation.data && (
+              <MemberSearchResult user={mutation.data} resetData={resetData} />
+            )}
 
             <Dialog.CloseTrigger asChild>
               <button type="button">

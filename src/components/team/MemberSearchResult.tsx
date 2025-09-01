@@ -1,15 +1,20 @@
+import { useNavigate, useParams } from "react-router-dom";
 import { Plus } from "lucide-react";
-import { TeamMember } from "@/types";
 import { useMutation } from "@tanstack/react-query";
-import { addUserToProject } from "@/api/TeamApi";
 import { toast } from "sonner";
-import { useParams } from "react-router-dom";
+import { TeamMember } from "@/types";
+import { addUserToProject } from "@/api/TeamApi";
 
 type MemberSearchResultProps = {
   user: TeamMember;
+  resetData: () => void;
 };
 
-export default function MemberSearchResult({ user }: MemberSearchResultProps) {
+export default function MemberSearchResult({
+  user,
+  resetData
+}: MemberSearchResultProps) {
+  const navigate = useNavigate();
   const params = useParams();
   const projectId = params.projectId!;
 
@@ -20,6 +25,8 @@ export default function MemberSearchResult({ user }: MemberSearchResultProps) {
     },
     onSuccess: data => {
       toast.success(data);
+      resetData();
+      navigate(location.pathname, { replace: true });
     }
   });
 
