@@ -3,8 +3,10 @@ import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { Undo2, UserRoundPlus } from "lucide-react";
 import AddMemberModal from "@/components/team/AddMemberModal";
-import { getProjectTeam } from "@/api/TeamApi";
+import MembersList from "@/components/team/MembersList";
 import Spinner from "@/components/ui/Spinner";
+import BasicMessage from "@/components/ui/BasicMessage";
+import { getProjectTeam } from "@/api/TeamApi";
 import { changeDocumentTitle } from "@/utils";
 
 export default function ProjectTeamView() {
@@ -56,6 +58,12 @@ export default function ProjectTeamView() {
             <Undo2 /> Volver al Proyecto
           </Link>
         </nav>
+
+        {data.team.length ? (
+          <MembersList team={data.team} />
+        ) : (
+          <BasicMessage>Este Proyecto aún no tiene Colaboradores.</BasicMessage>
+        )}
 
         <AddMemberModal />
       </div>

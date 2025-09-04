@@ -1,0 +1,68 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Members List */
+.members-list {
+  margin-top: 4rem;
+
+  &__heading {
+    font-family: v.$heading-font;
+    font-weight: 600;
+  }
+
+  &__frame {
+    @include m.desktop {
+      @include m.grid(2, 2rem);
+    }
+
+    @include m.desktop-xl {
+      @include m.grid(4, 3rem);
+    }
+  }
+}
+
+.member {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3rem;
+  background-color: v.$white;
+  box-shadow: 0px 10px 15px -3px color.adjust(v.$light-grey, $lightness: -5%);
+  border-radius: 1.2rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+  position: relative;
+
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+
+  @include m.desktop {
+    margin-bottom: 0;
+  }
+
+  &__content {
+    display: flex;
+    gap: 1rem;
+  }
+
+  &__name {
+    color: v.$primary;
+    font-weight: 600;
+    margin-bottom: 0;
+  }
+
+  &__email {
+    color: color.adjust(v.$black, $lightness: 50%);
+    margin-top: 0.5rem;
+  }
+
+  .user-initials {
+    &__circle {
+      background-color: v.$secondary;
+      color: v.$primary;
+    }
+  }
+}

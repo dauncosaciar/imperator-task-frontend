@@ -1,6 +1,11 @@
 import { isAxiosError } from "axios";
 import api from "@/lib/axios";
-import { Project, TeamMember, TeamMemberFormData } from "@/types";
+import {
+  Project,
+  TeamMember,
+  TeamMemberFormData,
+  teamMembersSchema
+} from "@/types";
 
 type TeamApi = {
   projectId: Project["_id"];
@@ -42,7 +47,11 @@ export async function getProjectTeam(projectId: Project["_id"]) {
   try {
     const url = `/projects/${projectId}/team`;
     const { data } = await api.get(url);
-    return data;
+    const response = teamMembersSchema.safeParse(data);
+
+    if (response.success) {
+      return response.data;
+    }
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
