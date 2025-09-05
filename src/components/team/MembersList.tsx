@@ -26,7 +26,7 @@ export default function MembersList({ team }: MembersListProps) {
             </div>
 
             <div className="member__options">
-              <Tooltip tooltipText="Eliminar del Proyecto">
+              <Tooltip tooltipText="Eliminar Colaborador">
                 <button
                   type="button"
                   className="member__option member__option--delete"
