@@ -60,7 +60,7 @@ export default function ProjectTeamView() {
         </nav>
 
         {data.team.length ? (
-          <MembersList team={data.team} />
+          <MembersList projectId={projectId} team={data.team} />
         ) : (
           <BasicMessage>Este Proyecto aún no tiene Colaboradores.</BasicMessage>
         )}

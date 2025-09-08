@@ -9,7 +9,7 @@ import {
 
 type TeamApi = {
   projectId: Project["_id"];
-  id: TeamMember["_id"];
+  userId: TeamMember["_id"];
   formData: TeamMemberFormData;
 };
 
@@ -34,7 +34,7 @@ export async function addUserToProject({
 }: Pick<TeamApi, "projectId" | "id">) {
   try {
     const url = `/projects/${projectId}/team`;
-    const { data } = await api.post(url, { id });
+    const { data } = await api.post<string>(url, { id });
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
@@ -52,6 +52,21 @@ export async function getProjectTeam(projectId: Project["_id"]) {
     if (response.success) {
       return response.data;
     }
+  } catch (error) {
+    if (isAxiosError(error) && error.response) {
+      throw new Error(error.response.data.error);
+    }
+  }
+}
+
+export async function removeUserFromProject({
+  projectId,
+  userId
+}: Pick<TeamApi, "projectId" | "userId">) {
+  try {
+    const url = `/projects/${projectId}/team/${userId}`;
+    const { data } = await api.delete<string>(url);
+    return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
       throw new Error(error.response.data.error);
