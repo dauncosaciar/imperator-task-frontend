@@ -10,98 +10,64 @@ export default function Spinner({ spinnerText }: SpinnerProps) {
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <rect x="1" y="6" width="2.8" height="12">
-          <animate
-            begin="spinner_Diec.begin+0.4s"
-            attributeName="y"
-            calcMode="spline"
-            dur="0.6s"
-            values="6;1;6"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+        <g>
+          <rect x="11" y="1" width="2" height="5" opacity=".14" />
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(30 12 12)"
+            opacity=".29"
           />
-          <animate
-            begin="spinner_Diec.begin+0.4s"
-            attributeName="height"
-            calcMode="spline"
-            dur="0.6s"
-            values="12;22;12"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(60 12 12)"
+            opacity=".43"
           />
-        </rect>
-        <rect x="5.8" y="6" width="2.8" height="12">
-          <animate
-            begin="spinner_Diec.begin+0.2s"
-            attributeName="y"
-            calcMode="spline"
-            dur="0.6s"
-            values="6;1;6"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(90 12 12)"
+            opacity=".57"
           />
-          <animate
-            begin="spinner_Diec.begin+0.2s"
-            attributeName="height"
-            calcMode="spline"
-            dur="0.6s"
-            values="12;22;12"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(120 12 12)"
+            opacity=".71"
           />
-        </rect>
-        <rect x="10.6" y="6" width="2.8" height="12">
-          <animate
-            id="spinner_Diec"
-            begin="0;spinner_dm8s.end-0.1s"
-            attributeName="y"
-            calcMode="spline"
-            dur="0.6s"
-            values="6;1;6"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(150 12 12)"
+            opacity=".86"
           />
-          <animate
-            begin="0;spinner_dm8s.end-0.1s"
-            attributeName="height"
-            calcMode="spline"
-            dur="0.6s"
-            values="12;22;12"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <rect
+            x="11"
+            y="1"
+            width="2"
+            height="5"
+            transform="rotate(180 12 12)"
           />
-        </rect>
-        <rect x="15.4" y="6" width="2.8" height="12">
-          <animate
-            begin="spinner_Diec.begin+0.2s"
-            attributeName="y"
-            calcMode="spline"
-            dur="0.6s"
-            values="6;1;6"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
+          <animateTransform
+            attributeName="transform"
+            type="rotate"
+            calcMode="discrete"
+            dur="0.75s"
+            values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12"
+            repeatCount="indefinite"
           />
-          <animate
-            begin="spinner_Diec.begin+0.2s"
-            attributeName="height"
-            calcMode="spline"
-            dur="0.6s"
-            values="12;22;12"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
-          />
-        </rect>
-        <rect x="20.2" y="6" width="2.8" height="12">
-          <animate
-            id="spinner_dm8s"
-            begin="spinner_Diec.begin+0.4s"
-            attributeName="y"
-            calcMode="spline"
-            dur="0.6s"
-            values="6;1;6"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
-          />
-          <animate
-            begin="spinner_Diec.begin+0.4s"
-            attributeName="height"
-            calcMode="spline"
-            dur="0.6s"
-            values="12;22;12"
-            keySplines=".14,.73,.34,1;.65,.26,.82,.45"
-          />
-        </rect>
+        </g>
       </svg>
 
       {spinnerText && <span className="spinner__text">{spinnerText}</span>}
