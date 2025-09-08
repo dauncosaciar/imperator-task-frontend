@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { Undo2, UserRoundPlus } from "lucide-react";
+import { CloudAlert, Undo2, UserRoundPlus } from "lucide-react";
 import AddMemberModal from "@/components/team/AddMemberModal";
 import MembersList from "@/components/team/MembersList";
 import Spinner from "@/components/ui/Spinner";
@@ -62,7 +62,11 @@ export default function ProjectTeamView() {
         {data.team.length ? (
           <MembersList projectId={projectId} team={data.team} />
         ) : (
-          <BasicMessage>Este Proyecto aún no tiene Colaboradores.</BasicMessage>
+          <BasicMessage
+            messageIcon={CloudAlert}
+            messageTitle="Este Proyecto no tiene Colaboradores"
+            messageDescription="Agrega unos cuantos para listarlos aquí."
+          />
         )}
 
         <AddMemberModal />

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { FolderPlus } from "lucide-react";
+import { FolderPlus, TextSelect } from "lucide-react";
 import { getProjects } from "@/api/ProjectApi";
 import BasicMessage from "@/components/ui/BasicMessage";
 import Spinner from "@/components/ui/Spinner";
@@ -37,9 +37,11 @@ export default function DashboardView() {
         {data.length ? (
           <ProjectsList data={data} />
         ) : (
-          <BasicMessage>
-            Aún no tienes Proyectos cargados por aquí.
-          </BasicMessage>
+          <BasicMessage
+            messageIcon={TextSelect}
+            messageTitle="No tienes Proyectos cargados"
+            messageDescription="Crea los tuyos o pide a un Mánager que te agregue como Colaborador a uno de los suyos."
+          />
         )}
       </div>
     );

@@ -92,9 +92,10 @@ export default function AddMemberModal() {
             />
 
             {mutation.error && (
-              <BasicMessage>
-                <Frown /> {mutation.error.message}
-              </BasicMessage>
+              <BasicMessage
+                messageIcon={Frown}
+                messageTitle={mutation.error.message}
+              />
             )}
 
             {mutation.data && (

@@ -1,24 +1,35 @@
 @use "sass:color";
 @use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
 
 /* Basic Message */
 .basic-message {
-  margin-top: 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 4rem auto 0;
 
-  &__text {
+  @include m.phone {
+    max-width: 40rem;
+  }
+
+  svg {
+    color: v.$primary;
+    width: 7.5rem;
+    height: 7.5rem;
+  }
+
+  &__title {
     color: color.adjust(v.$secondary, $lightness: -20%);
     font-weight: 700;
-    font-size: 2rem;
     text-align: center;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
+  }
 
-    svg {
-      width: 4rem;
-      height: 4rem;
-    }
+  &__description {
+    margin-top: 1rem;
+    text-align: center;
   }
 }

@@ -22,16 +22,18 @@
   }
 
   .basic-message {
+    flex-direction: row;
     margin-top: 2rem;
 
-    &__text {
+    svg {
+      color: v.$red;
+      width: 2.4rem;
+      height: 2.4rem;
+    }
+
+    &__title {
       color: v.$red;
       font-size: 1.6rem;
-
-      svg {
-        width: 2.4rem;
-        height: 2.4rem;
-      }
     }
   }
 }
