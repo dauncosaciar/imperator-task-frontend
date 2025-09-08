@@ -1,5 +1,5 @@
 import { Trash } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { Project, TeamMember } from "@/types";
 import UserInitials from "../ui/UserInitials";
@@ -12,12 +12,15 @@ type MembersListProps = {
 };
 
 export default function MembersList({ projectId, team }: MembersListProps) {
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: removeUserFromProject,
     onError: error => {
       toast.error(error.message);
     },
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["projectTeam", projectId] });
       toast.success(data);
     }
   });

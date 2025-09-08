@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { Plus } from "lucide-react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { TeamMember } from "@/types";
 import { addUserToProject } from "@/api/TeamApi";
@@ -18,12 +18,15 @@ export default function MemberSearchResult({
   const params = useParams();
   const projectId = params.projectId!;
 
+  const queryClient = useQueryClient();
+
   const { mutate } = useMutation({
     mutationFn: addUserToProject,
     onError: error => {
       toast.error(error.message);
     },
     onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["projectTeam", projectId] });
       toast.success(data);
       resetData();
       navigate(location.pathname, { replace: true });
