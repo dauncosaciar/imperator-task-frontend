@@ -40,7 +40,7 @@ export default function DashboardView() {
           <BasicMessage
             messageIcon={TextSelect}
             messageTitle="No tienes Proyectos cargados"
-            messageDescription="Crea los tuyos o pide a un Mánager que te agregue como Colaborador a uno de los suyos."
+            messageDescription="Crea los tuyos o pide a un Mánager que te agregue como Colaborador de los suyos para que los veas listados aquí."
           />
         )}
       </div>
