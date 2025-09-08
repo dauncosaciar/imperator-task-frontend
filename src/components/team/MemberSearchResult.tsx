@@ -33,7 +33,7 @@ export default function MemberSearchResult({
   const handleAddUserToProject = () => {
     const data = {
       projectId,
-      id: user._id
+      userId: user._id
     };
     mutate(data);
   };

@@ -30,11 +30,11 @@ export async function findUserByEmail({
 
 export async function addUserToProject({
   projectId,
-  id
-}: Pick<TeamApi, "projectId" | "id">) {
+  userId
+}: Pick<TeamApi, "projectId" | "userId">) {
   try {
     const url = `/projects/${projectId}/team`;
-    const { data } = await api.post<string>(url, { id });
+    const { data } = await api.post<string>(url, { userId });
     return data;
   } catch (error) {
     if (isAxiosError(error) && error.response) {
