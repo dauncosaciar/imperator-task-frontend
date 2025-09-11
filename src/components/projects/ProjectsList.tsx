@@ -2,15 +2,16 @@ import { Link } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FolderInput, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
-import { DashboardProject } from "@/types";
+import { DashboardProject, User } from "@/types";
 import { deleteProject } from "@/api/ProjectApi";
 import Tooltip from "../ui/Tooltip";
 
 type ProjectsListProps = {
   data: DashboardProject;
+  user: User;
 };
 
-export default function ProjectsList({ data }: ProjectsListProps) {
+export default function ProjectsList({ data, user }: ProjectsListProps) {
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -47,24 +48,28 @@ export default function ProjectsList({ data }: ProjectsListProps) {
               </Link>
             </Tooltip>
 
-            <Tooltip tooltipText="Editar Proyecto">
-              <Link
-                to={`/projects/${project._id}/edit`}
-                className="project__option"
-              >
-                <Pencil />
-              </Link>
-            </Tooltip>
+            {project.manager.toString() === user._id.toString() && (
+              <>
+                <Tooltip tooltipText="Editar Proyecto">
+                  <Link
+                    to={`/projects/${project._id}/edit`}
+                    className="project__option"
+                  >
+                    <Pencil />
+                  </Link>
+                </Tooltip>
 
-            <Tooltip tooltipText="Eliminar Proyecto">
-              <button
-                type="button"
-                className="project__option project__option--delete"
-                onClick={() => mutate(project._id)}
-              >
-                <Trash />
-              </button>
-            </Tooltip>
+                <Tooltip tooltipText="Eliminar Proyecto">
+                  <button
+                    type="button"
+                    className="project__option project__option--delete"
+                    onClick={() => mutate(project._id)}
+                  >
+                    <Trash />
+                  </button>
+                </Tooltip>
+              </>
+            )}
           </div>
         </div>
       ))}

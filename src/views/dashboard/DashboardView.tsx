@@ -7,9 +7,12 @@ import BasicMessage from "@/components/ui/BasicMessage";
 import Spinner from "@/components/ui/Spinner";
 import ProjectsList from "@/components/projects/ProjectsList";
 import { changeDocumentTitle } from "@/utils";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardView() {
-  const { data, isFetching } = useQuery({
+  const { data: user, isLoading: authLoading } = useAuth();
+
+  const { data, isLoading } = useQuery({
     queryKey: ["projects"],
     queryFn: getProjects,
     refetchOnWindowFocus: false
@@ -19,9 +22,10 @@ export default function DashboardView() {
     changeDocumentTitle("Mis Proyectos");
   }, []);
 
-  if (isFetching) return <Spinner spinnerText="Recuperando tus proyectos" />;
+  if (isLoading && authLoading)
+    return <Spinner spinnerText="Recuperando tus proyectos" />;
 
-  if (data)
+  if (data && user)
     return (
       <div className="dashboard-view">
         <h1 className="dashboard-view__heading">Mis Proyectos</h1>
@@ -35,7 +39,7 @@ export default function DashboardView() {
         </nav>
 
         {data.length ? (
-          <ProjectsList data={data} />
+          <ProjectsList data={data} user={user} />
         ) : (
           <BasicMessage
             messageIcon={TextSelect}
