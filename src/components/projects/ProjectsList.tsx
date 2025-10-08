@@ -30,6 +30,19 @@ export default function ProjectsList({ data, user }: ProjectsListProps) {
       {data.map(project => (
         <div key={project._id} className="project">
           <div className="project__content">
+            <div className="project__user-role">
+              <span
+                className={`project__user-role-text project__user-role-text--${
+                  project.manager.toString() === user._id.toString()
+                    ? "manager"
+                    : "member"
+                }`}
+              >
+                {project.manager.toString() === user._id.toString()
+                  ? "Manager"
+                  : "Colaborador"}
+              </span>
+            </div>
             <h4 className="project__heading">
               <Link to={`/projects/${project._id}`} className="project__link">
                 {project.projectName}
