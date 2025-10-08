@@ -5,6 +5,7 @@ import { toast } from "sonner";
 import { DashboardProject, User } from "@/types";
 import { deleteProject } from "@/api/ProjectApi";
 import Tooltip from "../ui/Tooltip";
+import { isManager } from "@/utils/policies";
 
 type ProjectsListProps = {
   data: DashboardProject;
@@ -33,12 +34,10 @@ export default function ProjectsList({ data, user }: ProjectsListProps) {
             <div className="project__user-role">
               <span
                 className={`project__user-role-text project__user-role-text--${
-                  project.manager.toString() === user._id.toString()
-                    ? "manager"
-                    : "member"
+                  isManager(project.manager, user._id) ? "manager" : "member"
                 }`}
               >
-                {project.manager.toString() === user._id.toString()
+                {isManager(project.manager, user._id)
                   ? "Manager"
                   : "Colaborador"}
               </span>
@@ -61,7 +60,7 @@ export default function ProjectsList({ data, user }: ProjectsListProps) {
               </Link>
             </Tooltip>
 
-            {project.manager.toString() === user._id.toString() && (
+            {isManager(project.manager, user._id) && (
               <>
                 <Tooltip tooltipText="Editar Proyecto">
                   <Link

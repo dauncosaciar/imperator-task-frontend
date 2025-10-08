@@ -22,8 +22,7 @@ export default function DashboardView() {
     changeDocumentTitle("Mis Proyectos");
   }, []);
 
-  if (isLoading && authLoading)
-    return <Spinner spinnerText="Recuperando tus proyectos" />;
+  if (isLoading) return <Spinner spinnerText="Recuperando tus proyectos" />;
 
   if (data && user)
     return (

@@ -4,8 +4,14 @@ import TasksList from "../tasks/TasksList";
 import AddTaskModal from "../tasks/AddTaskModal";
 import EditTaskData from "../tasks/EditTaskData";
 import TaskDetailsModal from "../tasks/TaskDetailsModal";
+import { TeamMember } from "@/types";
+import { isManager } from "@/utils/policies";
 
-export default function ProjectDetails({ data }) {
+type ProjectDetailsProps = {
+  user: TeamMember;
+};
+
+export default function ProjectDetails({ data, user }: ProjectDetailsProps) {
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -16,22 +22,24 @@ export default function ProjectDetails({ data }) {
       </h1>
       <p className="project-details__description">{data.description}</p>
 
-      <nav className="project-details__nav">
-        <button
-          type="button"
-          className="project-details__nav-link"
-          onClick={() => navigate(location.pathname + "?newTask=true")}
-        >
-          <ListFilterPlus /> Agregar Tarea
-        </button>
+      {isManager(data.manager, user._id) && (
+        <nav className="project-details__nav">
+          <button
+            type="button"
+            className="project-details__nav-link"
+            onClick={() => navigate(location.pathname + "?newTask=true")}
+          >
+            <ListFilterPlus /> Agregar Tarea
+          </button>
 
-        <Link
-          className="project-details__nav-link project-details__nav-link--secondary"
-          to="team"
-        >
-          <Users /> Colaboradores
-        </Link>
-      </nav>
+          <Link
+            className="project-details__nav-link project-details__nav-link--secondary"
+            to="team"
+          >
+            <Users /> Colaboradores
+          </Link>
+        </nav>
+      )}
 
       <TasksList tasks={data.tasks} />
 

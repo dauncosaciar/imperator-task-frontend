@@ -5,8 +5,10 @@ import { getProjectById } from "@/api/ProjectApi";
 import Spinner from "@/components/ui/Spinner";
 import { changeDocumentTitle } from "@/utils";
 import ProjectDetails from "@/components/projects/ProjectDetails";
+import { useAuth } from "@/hooks/useAuth";
 
 export default function ProjectDetailsView() {
+  const { data: user, isLoading: authLoading } = useAuth();
   const params = useParams();
   const projectId = params.projectId!;
 
@@ -28,5 +30,5 @@ export default function ProjectDetailsView() {
 
   if (isError) return <Navigate to="/404" />;
 
-  if (data) return <ProjectDetails data={data} />;
+  if (data && user) return <ProjectDetails data={data} user={user} />;
 }
