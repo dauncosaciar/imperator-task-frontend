@@ -3,9 +3,10 @@ import { Task } from "@/types";
 
 type TaskCardProps = {
   task: Task;
+  canEdit: boolean;
 };
 
-export default function TaskCard({ task }: TaskCardProps) {
+export default function TaskCard({ task, canEdit }: TaskCardProps) {
   return (
     <li className="task-card">
       <div className="task-card__content">
@@ -13,7 +14,7 @@ export default function TaskCard({ task }: TaskCardProps) {
         <p className="task-card__description">{task.description}</p>
       </div>
 
-      <TaskCardMenu task={task} />
+      <TaskCardMenu task={task} canEdit={canEdit} />
     </li>
   );
 }

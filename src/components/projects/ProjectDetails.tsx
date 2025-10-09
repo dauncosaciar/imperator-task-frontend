@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { ListFilterPlus, Users } from "lucide-react";
 import TasksList from "../tasks/TasksList";
@@ -14,6 +15,10 @@ type ProjectDetailsProps = {
 export default function ProjectDetails({ data, user }: ProjectDetailsProps) {
   const location = useLocation();
   const navigate = useNavigate();
+
+  const canEdit = useMemo(() => data?.manager === user?._id, [data, user]);
+
+  console.log("canEdit:", canEdit);
 
   return (
     <div className="project-details">
@@ -41,7 +46,7 @@ export default function ProjectDetails({ data, user }: ProjectDetailsProps) {
         </nav>
       )}
 
-      <TasksList tasks={data.tasks} />
+      <TasksList tasks={data.tasks} canEdit={canEdit} />
 
       <AddTaskModal />
       <EditTaskData />

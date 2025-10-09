@@ -8,9 +8,10 @@ import { deleteTask } from "@/api/TaskApi";
 
 type TaskCardMenuProps = {
   task: Task;
+  canEdit: boolean;
 };
 
-export default function TaskCardMenu({ task }: TaskCardMenuProps) {
+export default function TaskCardMenu({ task, canEdit }: TaskCardMenuProps) {
   const navigate = useNavigate();
   const params = useParams();
   const projectId = params.projectId!;
@@ -50,27 +51,37 @@ export default function TaskCardMenu({ task }: TaskCardMenuProps) {
               </button>
             </Menu.Item>
 
-            <Menu.Item className="task-card-menu__item" value="Editar Tarea">
-              <button
-                type="button"
-                className="task-card-menu__button"
-                onClick={() =>
-                  navigate(location.pathname + `?editTask=${task._id}`)
-                }
-              >
-                Editar Tarea
-              </button>
-            </Menu.Item>
+            {canEdit && (
+              <>
+                <Menu.Item
+                  className="task-card-menu__item"
+                  value="Editar Tarea"
+                >
+                  <button
+                    type="button"
+                    className="task-card-menu__button"
+                    onClick={() =>
+                      navigate(location.pathname + `?editTask=${task._id}`)
+                    }
+                  >
+                    Editar Tarea
+                  </button>
+                </Menu.Item>
 
-            <Menu.Item className="task-card-menu__item" value="Eliminar Tarea">
-              <button
-                type="button"
-                className="task-card-menu__button task-card-menu__button--delete"
-                onClick={() => mutate({ projectId, taskId: task._id })}
-              >
-                Eliminar Tarea
-              </button>
-            </Menu.Item>
+                <Menu.Item
+                  className="task-card-menu__item"
+                  value="Eliminar Tarea"
+                >
+                  <button
+                    type="button"
+                    className="task-card-menu__button task-card-menu__button--delete"
+                    onClick={() => mutate({ projectId, taskId: task._id })}
+                  >
+                    Eliminar Tarea
+                  </button>
+                </Menu.Item>
+              </>
+            )}
           </Menu.Content>
         </Menu.Positioner>
       </Portal>

@@ -4,6 +4,7 @@ import TaskCard from "./TaskCard";
 
 type TasksListProps = {
   tasks: Task[];
+  canEdit: boolean;
 };
 
 type GroupedTasks = {
@@ -30,7 +31,7 @@ const statusStyles: StatusStyles = {
   completed: "completed"
 };
 
-export default function TasksList({ tasks }: TasksListProps) {
+export default function TasksList({ tasks, canEdit }: TasksListProps) {
   const groupedTasks = tasks.reduce((acc, task) => {
     let currentGroup = acc[task.status] ? [...acc[task.status]] : [];
     currentGroup = [...currentGroup, task];
@@ -54,7 +55,9 @@ export default function TasksList({ tasks }: TasksListProps) {
               {tasks.length === 0 ? (
                 <li className="tasks-list__item">Sin Tareas</li>
               ) : (
-                tasks.map(task => <TaskCard key={task._id} task={task} />)
+                tasks.map(task => (
+                  <TaskCard key={task._id} task={task} canEdit={canEdit} />
+                ))
               )}
             </ul>
           </div>
