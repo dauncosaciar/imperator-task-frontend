@@ -92,6 +92,15 @@ export default function TaskDetailsModal() {
                 {data.description}
               </p>
 
+              {data.updatedBy && (
+                <p className="task-details-modal__updated-by">
+                  <span className="task-details-modal__updated-by-label">
+                    Estado actualizado por:
+                  </span>{" "}
+                  {data.updatedBy.name}, {data.updatedBy.lastName}
+                </p>
+              )}
+
               <div className="task-details-modal__status">
                 <label
                   htmlFor="taskStatus"

@@ -22,9 +22,8 @@
     margin-bottom: 2rem;
   }
 
-  &__datetime-label,
-  &__status-label {
-    font-weight: 700;
+  &__updated-by {
+    margin-bottom: 2rem;
   }
 
   &__status {
@@ -32,9 +31,19 @@
     flex-direction: column;
   }
 
+  &__updated-by,
   &__status-label {
     font-size: 1.4rem;
+  }
+
+  &__status-label {
     margin-bottom: 0.5rem;
+  }
+
+  &__datetime-label,
+  &__updated-by-label,
+  &__status-label {
+    font-weight: 700;
   }
 
   &__status-value {
