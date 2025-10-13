@@ -92,13 +92,32 @@ export default function TaskDetailsModal() {
                 {data.description}
               </p>
 
-              {data.updatedBy && (
-                <p className="task-details-modal__updated-by">
-                  <span className="task-details-modal__updated-by-label">
-                    Estado actualizado por:
-                  </span>{" "}
-                  {data.updatedBy.name}, {data.updatedBy.lastName}
-                </p>
+              {data.updatedBy.length && (
+                <div className="task-details-modal__history">
+                  <p className="task-details-modal__updated-by">
+                    Historial de Cambios:
+                  </p>
+
+                  <ul className="task-details-modal__changes">
+                    {data.updatedBy.map(changeActivity => (
+                      <li
+                        key={changeActivity._id}
+                        className="task-details-modal__change"
+                      >
+                        A{" "}
+                        <span className="task-details-modal__change-status">
+                          {statusTranslations[changeActivity.status]}
+                        </span>
+                        , por{" "}
+                        <span className="task-details-modal__change-status">
+                          {changeActivity.user.name}{" "}
+                          {changeActivity.user.lastName}
+                        </span>
+                        .
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               )}
 
               <div className="task-details-modal__status">
