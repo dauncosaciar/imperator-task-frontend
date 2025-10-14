@@ -58,8 +58,6 @@ export default function TaskDetailsModal() {
     return <Navigate to={`/projects/${projectId}`} />;
   }
 
-  console.log("data:", data);
-
   if (data)
     return (
       <Dialog.Root
