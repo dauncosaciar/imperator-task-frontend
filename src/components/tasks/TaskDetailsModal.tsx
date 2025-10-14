@@ -58,6 +58,8 @@ export default function TaskDetailsModal() {
     return <Navigate to={`/projects/${projectId}`} />;
   }
 
+  console.log("data:", data);
+
   if (data)
     return (
       <Dialog.Root
@@ -92,7 +94,7 @@ export default function TaskDetailsModal() {
                 {data.description}
               </p>
 
-              {data.updatedBy.length && (
+              {data.updatedBy.length > 0 && (
                 <div className="task-details-modal__history">
                   <p className="task-details-modal__updated-by">
                     Historial de Cambios:
