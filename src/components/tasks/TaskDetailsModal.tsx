@@ -14,6 +14,7 @@ import { formatDate } from "@/utils";
 import { statusTranslations } from "@/locales/es";
 import { TaskStatus } from "@/types";
 import Spinner from "../ui/Spinner";
+import NotesPanel from "../notes/NotesPanel";
 
 export default function TaskDetailsModal() {
   const params = useParams();
@@ -145,6 +146,8 @@ export default function TaskDetailsModal() {
                   {isPending && <Spinner />}
                 </div>
               </div>
+
+              <NotesPanel />
 
               <Dialog.CloseTrigger asChild>
                 <button type="button">
