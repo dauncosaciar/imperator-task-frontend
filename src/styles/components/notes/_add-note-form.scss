@@ -6,7 +6,16 @@
   .form {
     padding: 0;
     box-shadow: unset;
-    margin: 4rem 0 0;
+    margin: 0;
     max-width: unset;
+
+    textarea {
+      min-height: 10rem;
+      width: 85%;
+
+      @include m.phone {
+        width: 50%;
+      }
+    }
   }
 }
