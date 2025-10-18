@@ -1,7 +1,18 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { NoteFormData } from "@/types";
 import ErrorMessage from "../form/ErrorMessage";
 
-export default function NoteForm({ register, errors, mutationExecuting }) {
+type NoteFormProps = {
+  register: UseFormRegister<NoteFormData>;
+  errors: FieldErrors<NoteFormData>;
+  mutationExecuting: boolean;
+};
+
+export default function NoteForm({
+  register,
+  errors,
+  mutationExecuting
+}: NoteFormProps) {
   return (
     <>
       <div className="form__field">
@@ -13,7 +24,6 @@ export default function NoteForm({ register, errors, mutationExecuting }) {
           className={`form__input${
             errors.content ? " form__input--error" : ""
           }${mutationExecuting ? " form__input--disabled" : ""}`}
-          type="text"
           placeholder="Lo que desees dejar registrado"
           disabled={mutationExecuting}
           {...register("content", {
