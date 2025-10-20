@@ -108,6 +108,7 @@ export const taskSchema = z.object({
       status: taskStatusSchema
     })
   ),
+  notes: z.array(noteSchema),
   createdAt: z.string(),
   updatedAt: z.string()
 });

@@ -147,7 +147,7 @@ export default function TaskDetailsModal() {
                 </div>
               </div>
 
-              <NotesPanel />
+              <NotesPanel notes={data.notes} />
 
               <Dialog.CloseTrigger asChild>
                 <button type="button">
