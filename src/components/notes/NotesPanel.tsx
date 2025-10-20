@@ -1,5 +1,6 @@
 import { Task } from "@/types";
 import AddNoteForm from "./AddNoteForm";
+import NoteDetail from "./NoteDetail";
 
 type NotesPanelProps = {
   notes: Task["notes"];
@@ -14,13 +15,11 @@ export default function NotesPanel({ notes }: NotesPanelProps) {
         <div className="notes-panel__content">
           <p className="notes-panel__title">Notas agregadas</p>
 
-          <ul className="notes-panel__list">
+          <div className="notes-panel__notes">
             {notes.map(note => (
-              <li key={note._id} className="notes-panel__list-item">
-                Nota
-              </li>
+              <NoteDetail key={note._id} note={note} />
             ))}
-          </ul>
+          </div>
         </div>
       )}
     </div>

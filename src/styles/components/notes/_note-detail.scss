@@ -1,0 +1,23 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Note Detail */
+.note-detail {
+  border-bottom: 1px solid v.$grey;
+  padding: 0.5rem 0;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+
+  &__created-by {
+    color: color.adjust(v.$black, $lightness: 50%);
+    font-size: 1.4rem;
+  }
+
+  &__author,
+  &__created-at {
+    font-weight: 700;
+  }
+}

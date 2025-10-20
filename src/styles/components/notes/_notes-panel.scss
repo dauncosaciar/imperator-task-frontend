@@ -1,3 +1,4 @@
+@use "sass:color";
 @use "@/styles/abstracts/variables" as v;
 @use "@/styles/abstracts/mixins" as m;
 
@@ -10,7 +11,7 @@
   }
 
   &__title {
-    color: v.$primary;
+    color: color.adjust(v.$secondary, $lightness: -20%);
     font-size: 1.8rem;
     font-weight: 700;
   }
