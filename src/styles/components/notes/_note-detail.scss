@@ -4,6 +4,10 @@
 
 /* Note Detail */
 .note-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
   border-bottom: 1px solid v.$grey;
   padding: 0.5rem 0;
 
@@ -19,5 +23,22 @@
   &__author,
   &__created-at {
     font-weight: 700;
+  }
+
+  &__option {
+    @include m.nav-link(v.$primary);
+
+    svg {
+      width: 2rem;
+    }
+
+    &--delete {
+      color: v.$red;
+    }
+
+    & {
+      border-radius: 0.6rem;
+      padding: 0.25rem 0.5rem;
+    }
   }
 }
