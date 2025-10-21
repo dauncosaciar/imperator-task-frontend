@@ -96,7 +96,7 @@ export default function TaskDetailsModal() {
               {data.updatedBy.length > 0 && (
                 <div className="task-details-modal__history">
                   <p className="task-details-modal__updated-by">
-                    Historial de Cambios:
+                    Historial de Cambios
                   </p>
 
                   <ul className="task-details-modal__changes">

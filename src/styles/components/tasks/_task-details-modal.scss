@@ -26,11 +26,16 @@
     margin-bottom: 2rem;
   }
 
+  &__updated-by {
+    color: color.adjust(v.$secondary, $lightness: -20%);
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
   &__changes {
-    color: color.adjust(v.$black, $lightness: 50%);
     list-style: disc;
     margin-left: 3rem;
-    font-size: 1.4rem;
+    margin-top: 0.5rem;
     line-height: normal;
   }
 
@@ -43,14 +48,12 @@
     flex-direction: column;
   }
 
-  &__updated-by,
   &__status-label {
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
   }
 
   &__datetime-label,
-  &__updated-by,
   &__status-label {
     font-weight: 700;
   }
