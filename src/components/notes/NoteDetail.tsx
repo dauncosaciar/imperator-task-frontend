@@ -38,6 +38,10 @@ export default function NoteDetail({ note }: NoteDetailProps) {
       toast.error(error.message);
     },
     onSuccess: data => {
+      /*
+        Here we use setQueryData instead of invalidateQueries because we want to update notes array inmediately after
+        press delete trash button and show spinner (isPending = true)
+      */
       queryClient.setQueryData(["task", taskId], (oldData: Task) => {
         if (!oldData) return oldData;
 
