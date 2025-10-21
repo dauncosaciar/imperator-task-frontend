@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import { Trash } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
-import { Note } from "@/types";
+import { Note, Task } from "@/types";
 import { formatDate } from "@/utils";
 import Tooltip from "../ui/Tooltip";
 import Spinner from "../ui/Spinner";
@@ -32,13 +32,21 @@ export default function NoteDetail({ note }: NoteDetailProps) {
 
   const queryClient = useQueryClient();
 
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: deleteNote,
     onError: error => {
       toast.error(error.message);
     },
     onSuccess: data => {
-      queryClient.invalidateQueries({ queryKey: ["task", taskId] });
+      queryClient.setQueryData(["task", taskId], (oldData: Task) => {
+        if (!oldData) return oldData;
+
+        return {
+          ...oldData,
+          notes: oldData.notes.filter(n => n._id !== note._id)
+        };
+      });
+
       toast.success(data);
     }
   });
@@ -61,7 +69,7 @@ export default function NoteDetail({ note }: NoteDetailProps) {
         </p>
       </div>
 
-      {canDelete && (
+      {canDelete && !isPending && (
         <Tooltip tooltipText="Eliminar Nota">
           <button
             type="button"
@@ -71,6 +79,12 @@ export default function NoteDetail({ note }: NoteDetailProps) {
             <Trash />
           </button>
         </Tooltip>
+      )}
+
+      {canDelete && isPending && (
+        <div className="note-detail__delete-pending">
+          <Spinner />
+        </div>
       )}
     </div>
   );

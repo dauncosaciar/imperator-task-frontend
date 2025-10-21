@@ -41,4 +41,14 @@
       padding: 0.25rem 0.5rem;
     }
   }
+
+  &__delete-pending {
+    .spinner {
+      width: auto;
+
+      &__figure {
+        width: 2.5rem;
+      }
+    }
+  }
 }
