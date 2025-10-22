@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "@/layouts/AppLayout";
 import AuthLayout from "@/layouts/AuthLayout";
+import ProfileLayout from "@/layouts/ProfileLayout";
 import DashboardView from "@/views/dashboard/DashboardView";
 import CreateProjectView from "@/views/projects/CreateProjectView";
 import ProjectDetailsView from "@/views/projects/ProjectDetailsView";
@@ -31,11 +32,14 @@ export default function Router() {
             path="/projects/:projectId/team"
             element={<ProjectTeamView />}
           />
-          <Route path="/profile" element={<ProfileView />} />
-          <Route
-            path="/profile/change-password"
-            element={<ChangePasswordView />}
-          />
+
+          <Route element={<ProfileLayout />}>
+            <Route path="/profile" element={<ProfileView />} />
+            <Route
+              path="/profile/change-password"
+              element={<ChangePasswordView />}
+            />
+          </Route>
         </Route>
 
         <Route element={<AuthLayout />}>
