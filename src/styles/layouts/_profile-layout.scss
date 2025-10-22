@@ -1,0 +1,16 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Profile Layout */
+.profile-layout {
+  &__content {
+    @include m.desktop-xl {
+      max-width: 120rem;
+      margin: 0 auto;
+    }
+  }
+
+  &__heading {
+    @include m.heading-with-border(v.$black, v.$grey);
+  }
+}
