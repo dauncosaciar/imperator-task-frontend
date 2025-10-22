@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, Portal } from "@chakra-ui/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
@@ -41,9 +41,9 @@ export default function AvatarMenu() {
               </div>
 
               <nav className="avatar-menu__nav">
-                <a className="avatar-menu__nav-link" href="#">
+                <Link className="avatar-menu__nav-link" to="/profile">
                   Mi Perfil
-                </a>
+                </Link>
                 <button
                   type="button"
                   className="avatar-menu__nav-link"
