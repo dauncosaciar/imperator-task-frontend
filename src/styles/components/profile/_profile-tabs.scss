@@ -1,0 +1,15 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Profile Tabs */
+.profile-tabs {
+  background-color: color.adjust(v.$primary, $lightness: 65%);
+  border-radius: 0 0 1.2rem 1.2rem;
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+}
