@@ -4,7 +4,7 @@ import { CircleUserRound, Fingerprint } from "lucide-react";
 const profileTabs = [
   { name: "Mi Cuenta", href: "/profile", icon: CircleUserRound },
   {
-    name: "Cambiar Password",
+    name: "Cambiar Contraseña",
     href: "/profile/change-password",
     icon: Fingerprint
   }

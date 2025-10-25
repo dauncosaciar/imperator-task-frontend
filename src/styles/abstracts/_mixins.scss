@@ -38,7 +38,7 @@
   outline: 0;
   text-align: center;
   transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out;
+    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
 }
 
 @mixin nav-link($hover-color) {
@@ -56,6 +56,37 @@
   &:hover,
   &.active {
     background-color: color.adjust($hover-color, $lightness: 65%);
+  }
+}
+
+@mixin tab-link($accentColor) {
+  @include link;
+
+  & {
+    border-radius: 0;
+    color: color.adjust(v.$black, $lightness: 50%);
+    width: auto;
+    position: relative;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s ease-in-out;
+  }
+
+  &:hover::after,
+  &.active::after {
+    border-bottom-color: $accentColor;
+  }
+
+  &:hover,
+  &.active {
+    color: $accentColor;
   }
 }
 
