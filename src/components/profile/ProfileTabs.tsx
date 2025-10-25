@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { useBreakpointValue } from "@chakra-ui/react";
 import { CircleUserRound, Fingerprint } from "lucide-react";
 
 const profileTabs = [
@@ -12,6 +13,7 @@ const profileTabs = [
 
 export default function ProfileTabs() {
   const location = useLocation();
+  const isMobile = useBreakpointValue({ base: true, md: false })!;
 
   return (
     <div className="profile-tabs">
@@ -28,7 +30,8 @@ export default function ProfileTabs() {
               to={profileTab.href}
             >
               <profileTab.icon />
-              {profileTab.name}
+
+              {!isMobile && profileTab.name}
             </Link>
           );
         })}
