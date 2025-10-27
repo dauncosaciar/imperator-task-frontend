@@ -5,7 +5,7 @@ import ProfileTabs from "@/components/profile/ProfileTabs";
 export default function ProfileLayout() {
   return (
     <div className="profile-layout">
-      <h1 className="profile-layout__heading">Mi Perfil</h1>
+      <h1 className="profile-layout__heading">Perfil</h1>
 
       <div className="profile-layout__content">
         <ProfileHeader />

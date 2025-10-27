@@ -42,7 +42,7 @@ export default function AvatarMenu() {
 
               <nav className="avatar-menu__nav">
                 <Link className="avatar-menu__nav-link" to="/profile">
-                  Mi Perfil
+                  Perfil
                 </Link>
                 <button
                   type="button"
