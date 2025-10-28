@@ -1,0 +1,16 @@
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Edit Profile */
+.edit-profile {
+  &__heading {
+    font-family: v.$heading-font;
+    font-weight: 600;
+  }
+
+  &__content {
+    .form {
+      margin: 0 auto;
+    }
+  }
+}
