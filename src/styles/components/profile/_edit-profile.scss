@@ -8,9 +8,7 @@
     font-weight: 600;
   }
 
-  &__content {
-    .form {
-      margin: 0 auto;
-    }
+  &__text {
+    @include m.intro-text;
   }
 }

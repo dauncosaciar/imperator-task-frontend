@@ -28,6 +28,9 @@ export default function EditProfile({ data }: EditProfileProps) {
   return (
     <div className="edit-profile">
       <h2 className="edit-profile__heading">Mi Cuenta</h2>
+      <p className="edit-profile__text">
+        Actualiza tus datos personales cuando lo necesites.
+      </p>
 
       <div className="edit-profile__content">
         <Form
