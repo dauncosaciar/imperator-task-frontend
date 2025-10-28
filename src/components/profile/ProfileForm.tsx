@@ -1,7 +1,18 @@
 import { FieldErrors, UseFormRegister } from "react-hook-form";
+import { ProfileFormData } from "@/types";
 import ErrorMessage from "../form/ErrorMessage";
 
-export default function ProfileForm({ register, errors, mutationExecuting }) {
+type ProfileFormProps = {
+  register: UseFormRegister<ProfileFormData>;
+  errors: FieldErrors<ProfileFormData>;
+  mutationExecuting: boolean;
+};
+
+export default function ProfileForm({
+  register,
+  errors,
+  mutationExecuting
+}: ProfileFormProps) {
   return (
     <>
       <div className="form__field">

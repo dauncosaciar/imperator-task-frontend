@@ -2,10 +2,13 @@ import { useForm } from "react-hook-form";
 import { Pencil } from "lucide-react";
 import Form from "../form/Form";
 import ProfileForm from "./ProfileForm";
+import { ProfileFormData } from "@/types";
 
-export default function EditProfile({ data }) {
-  console.log("data:", data);
+type EditProfileProps = {
+  data: ProfileFormData;
+};
 
+export default function EditProfile({ data }: EditProfileProps) {
   const initialValues = {
     name: data.name,
     lastName: data.lastName,
@@ -18,7 +21,7 @@ export default function EditProfile({ data }) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = formData => {
+  const handleForm = (formData: ProfileFormData) => {
     console.log("formData:", formData);
   };
 

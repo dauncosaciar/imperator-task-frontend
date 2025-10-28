@@ -43,6 +43,8 @@ export const userSchema = authSchema
 
 export type User = z.infer<typeof userSchema>;
 
+export type ProfileFormData = Pick<User, "name" | "lastName" | "email">;
+
 /* Notes schemas and types */
 export const noteSchema = z.object({
   _id: z.string(),
