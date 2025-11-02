@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil } from "lucide-react";
+import { toast } from "sonner";
 import Form from "../form/Form";
 import ProfileForm from "./ProfileForm";
 import { ProfileFormData } from "@/types";
+import { updateProfile } from "@/api/ProfileApi";
 
 type EditProfileProps = {
   data: ProfileFormData;
@@ -21,9 +24,18 @@ export default function EditProfile({ data }: EditProfileProps) {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
-  const handleForm = (formData: ProfileFormData) => {
-    console.log("formData:", formData);
-  };
+  const queryClient = useQueryClient();
+
+  const { isPending, mutate } = useMutation({
+    mutationFn: updateProfile,
+    onError: error => toast.error(error.message),
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["user"] });
+      toast.success(data);
+    }
+  });
+
+  const handleForm = (formData: ProfileFormData) => mutate(formData);
 
   return (
     <div className="edit-profile">
@@ -39,8 +51,7 @@ export default function EditProfile({ data }: EditProfileProps) {
           InnerForm={ProfileForm}
           register={register}
           errors={errors}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
+          mutationExecuting={isPending}
           spinnerMessage="Guardando cambios"
           submitIcon={Pencil}
           submitText="Guardar Cambios"
