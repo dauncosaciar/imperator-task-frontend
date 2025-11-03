@@ -9,8 +9,4 @@
       margin: 0 auto;
     }
   }
-
-  &__heading {
-    @include m.heading-with-border(v.$black, v.$grey);
-  }
 }
