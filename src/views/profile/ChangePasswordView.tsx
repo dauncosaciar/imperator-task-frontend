@@ -1,10 +1,13 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { RectangleEllipsis } from "lucide-react";
+import { toast } from "sonner";
 import { changeDocumentTitle } from "@/utils";
 import Form from "@/components/form/Form";
 import UpdateCurrentUserPasswordForm from "@/components/profile/UpdateCurrentUserPasswordForm";
 import { UpdateCurrentUserPasswordFormData } from "@/types";
+import { updateCurrentUserPassword } from "@/api/ProfileApi";
 
 export default function ChangePasswordView() {
   useEffect(() => {
@@ -28,8 +31,17 @@ export default function ChangePasswordView() {
 
   const passwordWatch = watch("password");
 
+  const { isPending, mutate } = useMutation({
+    mutationFn: updateCurrentUserPassword,
+    onError: error => toast.error(error.message),
+    onSuccess: data => {
+      toast.success(data);
+      reset();
+    }
+  });
+
   const handleForm = (formData: UpdateCurrentUserPasswordFormData) =>
-    console.log("formData:", formData);
+    mutate(formData);
 
   return (
     <div className="change-password-view">
@@ -46,8 +58,7 @@ export default function ChangePasswordView() {
           register={register}
           errors={errors}
           passwordWatch={passwordWatch}
-          // mutationExecuting={isPending}
-          mutationExecuting={false}
+          mutationExecuting={isPending}
           spinnerMessage="Estableciendo nueva contraseña"
           submitIcon={RectangleEllipsis}
           submitText="Establecer Nueva Contraseña"
