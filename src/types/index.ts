@@ -5,6 +5,7 @@ export const authSchema = z.object({
   name: z.string(),
   lastName: z.string(),
   email: z.string().email(),
+  currentPassword: z.string(),
   password: z.string(),
   passwordConfirmation: z.string(),
   token: z.string()
@@ -26,6 +27,11 @@ export type ForgotPasswordFormData = Pick<Auth, "email">;
 export type NewPasswordFormData = Pick<
   Auth,
   "password" | "passwordConfirmation"
+>;
+
+export type UpdateCurrentUserPasswordFormData = Pick<
+  Auth,
+  "currentPassword" | "password" | "passwordConfirmation"
 >;
 
 export type ConfirmToken = Pick<Auth, "token">;
