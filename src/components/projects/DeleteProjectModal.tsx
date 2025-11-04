@@ -1,11 +1,14 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useMutation } from "@tanstack/react-query";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { Shredder, X } from "lucide-react";
+import { toast } from "sonner";
 import Form from "../form/Form";
 import { CheckPasswordFormData } from "@/types";
 import DeleteProjectForm from "./DeleteProjectForm";
+import { checkPassword } from "@/api/AuthApi";
 
 export default function DeleteProjectModal() {
   const navigate = useNavigate();
@@ -27,6 +30,11 @@ export default function DeleteProjectModal() {
     formState: { errors }
   } = useForm({ defaultValues: initialValues });
 
+  const checkUserPasswordMutation = useMutation({
+    mutationFn: checkPassword,
+    onError: error => toast.error(error.message)
+  });
+
   // With this useEffect, when the modal closes, the form data is reset whether the user submits the data or decides to close it without submitting anything
   useEffect(() => {
     if (!open) {
@@ -34,8 +42,10 @@ export default function DeleteProjectModal() {
     }
   }, [open, reset]);
 
-  const handleForm = (formData: CheckPasswordFormData) =>
-    console.log("formData:", formData);
+  const handleForm = async (formData: CheckPasswordFormData) => {
+    await checkUserPasswordMutation.mutateAsync(formData);
+    console.log("Después de la mutación...");
+  };
 
   return (
     <Dialog.Root
