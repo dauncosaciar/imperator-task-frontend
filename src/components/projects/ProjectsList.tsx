@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { FolderInput, Pencil, Trash } from "lucide-react";
 import { toast } from "sonner";
@@ -6,6 +6,7 @@ import { DashboardProject, User } from "@/types";
 import { deleteProject } from "@/api/ProjectApi";
 import Tooltip from "../ui/Tooltip";
 import { isManager } from "@/utils/policies";
+import DeleteProjectModal from "./DeleteProjectModal";
 
 type ProjectsListProps = {
   data: DashboardProject;
@@ -13,6 +14,8 @@ type ProjectsListProps = {
 };
 
 export default function ProjectsList({ data, user }: ProjectsListProps) {
+  const location = useLocation();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
 
   const { mutate } = useMutation({
@@ -75,7 +78,11 @@ export default function ProjectsList({ data, user }: ProjectsListProps) {
                   <button
                     type="button"
                     className="project__option project__option--delete"
-                    onClick={() => mutate(project._id)}
+                    onClick={() =>
+                      navigate(
+                        location.pathname + `?deleteProject=${project._id}`
+                      )
+                    }
                   >
                     <Trash />
                   </button>
@@ -85,6 +92,8 @@ export default function ProjectsList({ data, user }: ProjectsListProps) {
           </div>
         </div>
       ))}
+
+      <DeleteProjectModal />
     </div>
   );
 }

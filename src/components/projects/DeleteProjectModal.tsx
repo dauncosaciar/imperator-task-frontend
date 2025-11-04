@@ -1,14 +1,23 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { X } from "lucide-react";
 
 export default function DeleteProjectModal() {
+  const navigate = useNavigate();
+
+  // Read if modal exists
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const deleteProjectId = queryParams.get("deleteProject");
+  const open = deleteProjectId ? true : false;
+
   return (
     <Dialog.Root
       lazyMount
       size="lg"
       placement="center"
-      open={true}
-      onOpenChange={() => {}}
+      open={open}
+      onOpenChange={() => navigate(location.pathname, { replace: true })}
     >
       <Portal>
         <Dialog.Backdrop />
