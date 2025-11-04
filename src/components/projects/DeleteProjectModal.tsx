@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Dialog, Portal } from "@chakra-ui/react";
 import { Shredder, X } from "lucide-react";
 import { toast } from "sonner";
@@ -9,6 +9,7 @@ import Form from "../form/Form";
 import { CheckPasswordFormData } from "@/types";
 import DeleteProjectForm from "./DeleteProjectForm";
 import { checkPassword } from "@/api/AuthApi";
+import { deleteProject } from "@/api/ProjectApi";
 
 export default function DeleteProjectModal() {
   const navigate = useNavigate();
@@ -16,7 +17,7 @@ export default function DeleteProjectModal() {
   // Read if modal exists
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const deleteProjectId = queryParams.get("deleteProject");
+  const deleteProjectId = queryParams.get("deleteProject")!;
   const open = deleteProjectId ? true : false;
 
   const initialValues: CheckPasswordFormData = {
@@ -35,6 +36,21 @@ export default function DeleteProjectModal() {
     onError: error => toast.error(error.message)
   });
 
+  const queryClient = useQueryClient();
+
+  const deleteProjectMutation = useMutation({
+    mutationFn: deleteProject,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      toast.success(data);
+      reset();
+      navigate(location.pathname, { replace: true });
+    }
+  });
+
   // With this useEffect, when the modal closes, the form data is reset whether the user submits the data or decides to close it without submitting anything
   useEffect(() => {
     if (!open) {
@@ -44,7 +60,7 @@ export default function DeleteProjectModal() {
 
   const handleForm = async (formData: CheckPasswordFormData) => {
     await checkUserPasswordMutation.mutateAsync(formData);
-    console.log("Después de la mutación...");
+    await deleteProjectMutation.mutateAsync(deleteProjectId);
   };
 
   return (
@@ -73,8 +89,10 @@ export default function DeleteProjectModal() {
               InnerForm={DeleteProjectForm}
               register={register}
               errors={errors}
-              // mutationExecuting={isPending}
-              mutationExecuting={false}
+              mutationExecuting={
+                checkUserPasswordMutation.isPending ||
+                deleteProjectMutation.isPending
+              }
               spinnerMessage="Eliminando proyecto"
               submitIcon={Shredder}
               submitText="Eliminar Proyecto"

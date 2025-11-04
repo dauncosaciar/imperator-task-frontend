@@ -1,11 +1,8 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { FolderInput, Pencil, Trash } from "lucide-react";
-import { toast } from "sonner";
 import { DashboardProject, User } from "@/types";
-import { deleteProject } from "@/api/ProjectApi";
-import Tooltip from "../ui/Tooltip";
 import { isManager } from "@/utils/policies";
+import { FolderInput, Pencil, Trash } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Tooltip from "../ui/Tooltip";
 import DeleteProjectModal from "./DeleteProjectModal";
 
 type ProjectsListProps = {
@@ -16,18 +13,6 @@ type ProjectsListProps = {
 export default function ProjectsList({ data, user }: ProjectsListProps) {
   const location = useLocation();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  const { mutate } = useMutation({
-    mutationFn: deleteProject,
-    onError: error => {
-      toast.error(error.message);
-    },
-    onSuccess: data => {
-      queryClient.invalidateQueries({ queryKey: ["projects"] });
-      toast.success(data);
-    }
-  });
 
   return (
     <div className="projects-list">
