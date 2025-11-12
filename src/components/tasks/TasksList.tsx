@@ -1,6 +1,7 @@
 import { Task } from "@/types";
 import { statusTranslations } from "@/locales/es";
 import TaskCard from "./TaskCard";
+import DropTask from "./DropTask";
 
 type TasksListProps = {
   tasks: Task[];
@@ -51,6 +52,9 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
             <h3 className="tasks-list__status-title">
               {statusTranslations[status]}
             </h3>
+
+            <DropTask />
+
             <ul className="tasks-list__list">
               {tasks.length === 0 ? (
                 <li className="tasks-list__item">Sin Tareas</li>

@@ -1,0 +1,19 @@
+@use "sass:color";
+@use "@/styles/abstracts/variables" as v;
+@use "@/styles/abstracts/mixins" as m;
+
+/* Drop Task */
+.drop-task {
+  border: 1px dashed v.$primary;
+  border-radius: 1.2rem;
+  color: color.adjust(v.$black, $lightness: 50%);
+  font-size: 1.4rem;
+  font-weight: 700;
+  text-align: center;
+  padding: 0.6rem 1.2rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
