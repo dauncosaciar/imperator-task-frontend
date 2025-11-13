@@ -10,7 +10,7 @@ import { changeDocumentTitle } from "@/utils";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function DashboardView() {
-  const { data: user, isLoading: authLoading } = useAuth();
+  const { data: user } = useAuth();
 
   const { data, isLoading } = useQuery({
     queryKey: ["projects"],
