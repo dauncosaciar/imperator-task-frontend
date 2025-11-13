@@ -1,3 +1,4 @@
+import { DndContext } from "@dnd-kit/core";
 import { Task } from "@/types";
 import { statusTranslations } from "@/locales/es";
 import TaskCard from "./TaskCard";
@@ -44,28 +45,30 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
       <h2 className="tasks-list__heading">Tareas</h2>
 
       <div className="tasks-list__content">
-        {Object.entries(groupedTasks).map(([status, tasks]) => (
-          <div
-            key={status}
-            className={`tasks-list__frame tasks-list__frame--${statusStyles[status]}`}
-          >
-            <h3 className="tasks-list__status-title">
-              {statusTranslations[status]}
-            </h3>
+        <DndContext>
+          {Object.entries(groupedTasks).map(([status, tasks]) => (
+            <div
+              key={status}
+              className={`tasks-list__frame tasks-list__frame--${statusStyles[status]}`}
+            >
+              <h3 className="tasks-list__status-title">
+                {statusTranslations[status]}
+              </h3>
 
-            <DropTask />
+              <DropTask />
 
-            <ul className="tasks-list__list">
-              {tasks.length === 0 ? (
-                <li className="tasks-list__item">Sin Tareas</li>
-              ) : (
-                tasks.map(task => (
-                  <TaskCard key={task._id} task={task} canEdit={canEdit} />
-                ))
-              )}
-            </ul>
-          </div>
-        ))}
+              <ul className="tasks-list__list">
+                {tasks.length === 0 ? (
+                  <li className="tasks-list__item">Sin Tareas</li>
+                ) : (
+                  tasks.map(task => (
+                    <TaskCard key={task._id} task={task} canEdit={canEdit} />
+                  ))
+                )}
+              </ul>
+            </div>
+          ))}
+        </DndContext>
       </div>
     </div>
   );
