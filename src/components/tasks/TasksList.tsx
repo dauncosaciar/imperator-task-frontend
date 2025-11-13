@@ -1,4 +1,4 @@
-import { DndContext } from "@dnd-kit/core";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { Task } from "@/types";
 import { statusTranslations } from "@/locales/es";
 import TaskCard from "./TaskCard";
@@ -40,12 +40,21 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
     return { ...acc, [task.status]: currentGroup };
   }, initialStatusGroups);
 
+  const handleDragEnd = (e: DragEndEvent) => {
+    const { active, over } = e;
+
+    if (over && over.id) {
+      console.log("válido...");
+      console.log("id:", over.id);
+    }
+  };
+
   return (
     <div className="tasks-list">
       <h2 className="tasks-list__heading">Tareas</h2>
 
       <div className="tasks-list__content">
-        <DndContext>
+        <DndContext onDragEnd={handleDragEnd}>
           {Object.entries(groupedTasks).map(([status, tasks]) => (
             <div
               key={status}
@@ -55,7 +64,7 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
                 {statusTranslations[status]}
               </h3>
 
-              <DropTask />
+              <DropTask status={status} />
 
               <ul className="tasks-list__list">
                 {tasks.length === 0 ? (
