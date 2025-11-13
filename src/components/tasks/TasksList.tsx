@@ -1,8 +1,12 @@
+import { useParams } from "react-router-dom";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import { Task } from "@/types";
+import { toast } from "sonner";
+import { Task, TaskStatus } from "@/types";
 import { statusTranslations } from "@/locales/es";
 import TaskCard from "./TaskCard";
 import DropTask from "./DropTask";
+import { updateStatus } from "@/api/TaskApi";
 
 type TasksListProps = {
   tasks: Task[];
@@ -34,6 +38,22 @@ const statusStyles: StatusStyles = {
 };
 
 export default function TasksList({ tasks, canEdit }: TasksListProps) {
+  const params = useParams();
+  const projectId = params.projectId!;
+
+  const queryClient = useQueryClient();
+
+  const { mutate } = useMutation({
+    mutationFn: updateStatus,
+    onError: error => {
+      toast.error(error.message);
+    },
+    onSuccess: data => {
+      queryClient.invalidateQueries({ queryKey: ["project", projectId] });
+      toast.success(data);
+    }
+  });
+
   const groupedTasks = tasks.reduce((acc, task) => {
     let currentGroup = acc[task.status] ? [...acc[task.status]] : [];
     currentGroup = [...currentGroup, task];
@@ -44,8 +64,9 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
     const { active, over } = e;
 
     if (over && over.id) {
-      console.log("válido...");
-      console.log("id:", over.id);
+      const taskId = active.id.toString();
+      const status = over.id as TaskStatus;
+      mutate({ projectId, taskId, status });
     }
   };
 
