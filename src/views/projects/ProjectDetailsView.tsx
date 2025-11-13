@@ -8,7 +8,7 @@ import ProjectDetails from "@/components/projects/ProjectDetails";
 import { useAuth } from "@/hooks/useAuth";
 
 export default function ProjectDetailsView() {
-  const { data: user, isLoading: authLoading } = useAuth();
+  const { data: user } = useAuth();
   const params = useParams();
   const projectId = params.projectId!;
 

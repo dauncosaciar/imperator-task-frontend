@@ -18,6 +18,8 @@ export default function ProjectDetails({ data, user }: ProjectDetailsProps) {
 
   const canEdit = useMemo(() => data?.manager === user?._id, [data, user]);
 
+  console.log("data:", data);
+
   return (
     <div className="project-details">
       <h1 className="project-details__heading">
