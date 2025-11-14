@@ -17,13 +17,12 @@ export default function TaskCard({ task, canEdit }: TaskCardProps) {
     : undefined;
 
   return (
-    <li className="task-card">
+    <li className="task-card" style={style}>
       <div
         className="task-card__content"
         {...listeners}
         {...attributes}
         ref={setNodeRef}
-        style={style}
       >
         <h4 className="task-card__name">{task.name}</h4>
         <p className="task-card__description">{task.description}</p>
