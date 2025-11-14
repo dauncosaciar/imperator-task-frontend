@@ -1,9 +1,9 @@
 import { useDraggable } from "@dnd-kit/core";
 import TaskCardMenu from "./TaskCardMenu";
-import { Task } from "@/types";
+import { TaskProject } from "@/types";
 
 type TaskCardProps = {
-  task: Task;
+  task: TaskProject;
   canEdit: boolean;
 };
 

@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { getProjectById } from "@/api/ProjectApi";
+import { getFullProject } from "@/api/ProjectApi";
 import Spinner from "@/components/ui/Spinner";
 import { changeDocumentTitle } from "@/utils";
 import ProjectDetails from "@/components/projects/ProjectDetails";
@@ -14,7 +14,7 @@ export default function ProjectDetailsView() {
 
   const { data, isLoading, isError } = useQuery({
     queryKey: ["project", projectId],
-    queryFn: () => getProjectById(projectId),
+    queryFn: () => getFullProject(projectId),
     refetchOnWindowFocus: false,
     retry: false
   });

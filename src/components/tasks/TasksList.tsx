@@ -2,19 +2,19 @@ import { useParams } from "react-router-dom";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import { toast } from "sonner";
-import { Task, TaskStatus } from "@/types";
+import { Project, TaskProject, TaskStatus } from "@/types";
 import { statusTranslations } from "@/locales/es";
 import TaskCard from "./TaskCard";
 import DropTask from "./DropTask";
 import { updateStatus } from "@/api/TaskApi";
 
 type TasksListProps = {
-  tasks: Task[];
+  tasks: TaskProject[];
   canEdit: boolean;
 };
 
 type GroupedTasks = {
-  [key: string]: Task[];
+  [key: string]: TaskProject[];
 };
 
 type StatusStyles = {
@@ -68,8 +68,8 @@ export default function TasksList({ tasks, canEdit }: TasksListProps) {
       const status = over.id as TaskStatus;
       mutate({ projectId, taskId, status });
 
-      queryClient.setQueryData(["project", projectId], oldData => {
-        const updatedTasks = oldData.tasks.map((task: Task) => {
+      queryClient.setQueryData(["project", projectId], (oldData: Project) => {
+        const updatedTasks = oldData.tasks.map(task => {
           if (task._id === taskId) {
             return {
               ...task,

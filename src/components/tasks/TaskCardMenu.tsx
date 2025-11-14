@@ -3,11 +3,11 @@ import { EllipsisVertical } from "lucide-react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Menu, Portal } from "@chakra-ui/react";
 import { toast } from "sonner";
-import { Task } from "@/types";
+import { TaskProject } from "@/types";
 import { deleteTask } from "@/api/TaskApi";
 
 type TaskCardMenuProps = {
-  task: Task;
+  task: TaskProject;
   canEdit: boolean;
 };
 

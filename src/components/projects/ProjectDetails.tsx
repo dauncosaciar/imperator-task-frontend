@@ -5,10 +5,11 @@ import TasksList from "../tasks/TasksList";
 import AddTaskModal from "../tasks/AddTaskModal";
 import EditTaskData from "../tasks/EditTaskData";
 import TaskDetailsModal from "../tasks/TaskDetailsModal";
-import { TeamMember } from "@/types";
+import { Project, TeamMember } from "@/types";
 import { isManager } from "@/utils/policies";
 
 type ProjectDetailsProps = {
+  data: Project;
   user: TeamMember;
 };
 
