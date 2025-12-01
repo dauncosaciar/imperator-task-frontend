@@ -16,6 +16,7 @@ import ForgotPasswordView from "@/views/auth/ForgotPasswordView";
 import NewPasswordView from "@/views/auth/NewPasswordView";
 import ProfileView from "@/views/profile/ProfileView";
 import ChangePasswordView from "@/views/profile/ChangePasswordView";
+import NotFoundView from "@/views/404/NotFoundView";
 
 export default function Router() {
   return (
@@ -59,7 +60,7 @@ export default function Router() {
         </Route>
 
         <Route element={<ErrorLayout />}>
-          <Route path="*" element={<div>404 Page</div>} />
+          <Route path="*" element={<NotFoundView />} />
         </Route>
       </Routes>
     </BrowserRouter>
