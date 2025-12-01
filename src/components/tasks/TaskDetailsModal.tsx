@@ -26,7 +26,7 @@ export default function TaskDetailsModal() {
   const taskId = queryParams.get("viewTask")!;
   const open = taskId ? true : false;
 
-  const { data, isError, isFetching, error } = useQuery({
+  const { data, isError, error } = useQuery({
     queryKey: ["task", taskId],
     queryFn: () => getTaskById({ projectId, taskId }),
     enabled: !!taskId,
@@ -59,7 +59,7 @@ export default function TaskDetailsModal() {
     return <Navigate to={`/projects/${projectId}`} />;
   }
 
-  if (!isFetching && data)
+  if (data)
     return (
       <Dialog.Root
         lazyMount
