@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AppLayout from "@/layouts/AppLayout";
 import AuthLayout from "@/layouts/AuthLayout";
+import ErrorLayout from "@/layouts/ErrorLayout";
 import ProfileLayout from "@/layouts/ProfileLayout";
 import DashboardView from "@/views/dashboard/DashboardView";
 import CreateProjectView from "@/views/projects/CreateProjectView";
@@ -55,6 +56,10 @@ export default function Router() {
             element={<ForgotPasswordView />}
           />
           <Route path="/auth/new-password" element={<NewPasswordView />} />
+        </Route>
+
+        <Route element={<ErrorLayout />}>
+          <Route path="*" element={<div>404 Page</div>} />
         </Route>
       </Routes>
     </BrowserRouter>
