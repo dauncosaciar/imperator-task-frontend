@@ -60,14 +60,15 @@
 
   &__status-value {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     align-items: center;
 
     .spinner {
       width: auto;
+      padding: 0;
 
       &__figure {
-        width: 2.5rem;
+        width: 3rem;
       }
     }
   }

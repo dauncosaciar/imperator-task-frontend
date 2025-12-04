@@ -7,64 +7,43 @@ export default function Spinner({ spinnerText }: SpinnerProps) {
     <div className="spinner">
       <svg
         className="spinner__figure"
+        stroke="#0f6130"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
       >
         <g>
-          <rect x="11" y="1" width="2" height="5" opacity=".14" />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(30 12 12)"
-            opacity=".29"
-          />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(60 12 12)"
-            opacity=".43"
-          />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(90 12 12)"
-            opacity=".57"
-          />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(120 12 12)"
-            opacity=".71"
-          />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(150 12 12)"
-            opacity=".86"
-          />
-          <rect
-            x="11"
-            y="1"
-            width="2"
-            height="5"
-            transform="rotate(180 12 12)"
-          />
+          <circle
+            cx="12"
+            cy="12"
+            r="9.5"
+            fill="none"
+            stroke-width="3"
+            stroke-linecap="round"
+          >
+            <animate
+              attributeName="stroke-dasharray"
+              dur="1.5s"
+              calcMode="spline"
+              values="0 150;42 150;42 150;42 150"
+              keyTimes="0;0.475;0.95;1"
+              keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+              repeatCount="indefinite"
+            />
+            <animate
+              attributeName="stroke-dashoffset"
+              dur="1.5s"
+              calcMode="spline"
+              values="0;-16;-59;-59"
+              keyTimes="0;0.475;0.95;1"
+              keySplines="0.42,0,0.58,1;0.42,0,0.58,1;0.42,0,0.58,1"
+              repeatCount="indefinite"
+            />
+          </circle>
           <animateTransform
             attributeName="transform"
             type="rotate"
-            calcMode="discrete"
-            dur="0.75s"
-            values="0 12 12;30 12 12;60 12 12;90 12 12;120 12 12;150 12 12;180 12 12;210 12 12;240 12 12;270 12 12;300 12 12;330 12 12;360 12 12"
+            dur="2s"
+            values="0 12 12;360 12 12"
             repeatCount="indefinite"
           />
         </g>

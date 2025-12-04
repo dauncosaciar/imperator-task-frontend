@@ -13,14 +13,11 @@
   padding: 1rem;
 
   &__figure {
-    fill: v.$primary;
     width: 3.5rem;
   }
 
   &__text {
-    color: color.adjust(v.$black, $lightness: 40%);
     font-family: v.$main-font;
-    font-weight: 700;
     font-size: 1.8rem;
   }
 }
