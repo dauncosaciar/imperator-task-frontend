@@ -17,8 +17,8 @@ export default function Spinner({ spinnerText }: SpinnerProps) {
             cy="12"
             r="9.5"
             fill="none"
-            stroke-width="3"
-            stroke-linecap="round"
+            strokeWidth="3"
+            strokeLinecap="round"
           >
             <animate
               attributeName="stroke-dasharray"
