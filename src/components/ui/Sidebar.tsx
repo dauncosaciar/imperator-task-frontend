@@ -35,7 +35,7 @@ export default function Sidebar({
                   </Link>
                 </Drawer.Header>
                 <Drawer.Body>
-                  <Nav />
+                  <Nav onNavigate={() => setOpenDrawer(false)} />
                 </Drawer.Body>
                 <Drawer.CloseTrigger asChild>
                   <button type="button">
