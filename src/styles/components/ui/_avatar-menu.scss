@@ -49,6 +49,7 @@
     flex-direction: column;
 
     &-link {
+      font-size: 1.6rem;
       @include m.nav-link(v.$primary);
     }
   }

@@ -19,7 +19,7 @@ export default function AvatarMenu() {
 
   if (user)
     return (
-      <Menu.Root>
+      <Menu.Root closeOnSelect>
         <Menu.Trigger asChild>
           <div className="app-avatar">
             <UserInitials user={user} />
@@ -41,16 +41,21 @@ export default function AvatarMenu() {
               </div>
 
               <nav className="avatar-menu__nav">
-                <Link className="avatar-menu__nav-link" to="/profile">
-                  Perfil
-                </Link>
-                <button
-                  type="button"
-                  className="avatar-menu__nav-link"
-                  onClick={logout}
-                >
-                  Cerrar Sesión
-                </button>
+                <Menu.Item asChild value="Perfil">
+                  <Link className="avatar-menu__nav-link" to="/profile">
+                    Perfil
+                  </Link>
+                </Menu.Item>
+
+                <Menu.Item asChild value="Cerrar Sesión">
+                  <button
+                    type="button"
+                    className="avatar-menu__nav-link"
+                    onClick={logout}
+                  >
+                    Cerrar Sesión
+                  </button>
+                </Menu.Item>
               </nav>
             </Menu.Content>
           </Menu.Positioner>
