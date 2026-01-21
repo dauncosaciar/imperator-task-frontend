@@ -37,8 +37,11 @@
   width: 100%;
   outline: 0;
   text-align: center;
-  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-    box-shadow 0.15s ease-in-out, color 0.15s ease-in-out;
+  transition:
+    background-color 0.15s ease-in-out,
+    border-color 0.15s ease-in-out,
+    box-shadow 0.15s ease-in-out,
+    color 0.15s ease-in-out;
 }
 
 @mixin nav-link($hover-color) {
@@ -122,7 +125,7 @@
   color: $text-color;
   padding-bottom: 2rem;
   font-family: v.$heading-font;
-  font-weight: 600;
+  font-weight: 700;
   width: 100%;
 
   span {
