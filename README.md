@@ -37,7 +37,7 @@
 
 ![Project Screenshot][project-screenshot]
 
-Se trata de una API Rest para un dashboard que gestiona `Usuarios`, `Proyectos`, `Tareas`, `Notas` y `Colaboradores` de la siguiente forma:
+Se trata del frontend del dashboard que consume la [API Rest desarrollada](https://github.com/dauncosaciar/imperator-task-backend) que gestiona `Usuarios`, `Proyectos`, `Tareas`, `Notas` y `Colaboradores` de la siguiente forma:
 
 1. `Usuarios`:
    - Registro de usuarios usando un email.
@@ -74,9 +74,7 @@ Se trata de una API Rest para un dashboard que gestiona `Usuarios`, `Proyectos`,
 
 ### Tecnologías utilizadas
 
-![React.js][React.js] ![Typescript][Typescript] ![Javascript][Javascript] ![React-Router][React-Router] ![SASS][SASS] ![React-Query][React-Query]
-
-[React-Query]: https://img.shields.io/badge/React_Query-FD5C23?style=for-the-badge&logo=tanstack&logoColor=white
+![React.js][React.js] ![Typescript][Typescript] ![Javascript][Javascript] ![React-Router][React-Router] ![SASS][SASS] ![React-Query][React-Query] ![React-Hook-Form][React-Hook-Form] ![BEM][BEM] ![ZOD][ZOD]
 
 <p style="text-align: right;">[<a href="#readme-top">volver hacia arriba</a>]</p>
 
@@ -120,7 +118,7 @@ Abre una terminal con permisos de administrador (recomendado) y realiza lo sigui
    npm run dev
    ```
 
-   Al ejecutar este comando, el frontend se levantará el frontend en el puerto `7777`, ya que así fue configurado en el archivo `vite.config.ts`, en el apartado:
+   Al ejecutar este comando, el frontend se levantará en el puerto `7777` ya que así fue configurado en el archivo `vite.config.ts`, en el apartado:
 
    ```js
    server: {
@@ -146,9 +144,21 @@ Abre una terminal con permisos de administrador (recomendado) y realiza lo sigui
 
    Quiere decir que has instalado correctamente el proyecto en tu máquina y ya puedes utilizarlo.
 
-### Otro apartado
+## Uso
 
-Texto
+Para utilizar el proyecto que levantaste, ingresa al navegador web de tu gusto y en la barra de direcciones escribe:
+
+```http
+http://localhost:7777/auth/login
+```
+
+Esto te llevará a la página de **Login** para que inicies sesión. Sino tienes una cuenta en el Dashboard, puedes hacer click en el link de **Regístrate** que aparece en la misma página de inicio de sesión y cuyo link es:
+
+```http
+http://localhost:7777/auth/register
+```
+
+Una vez te registres, si configuraste MAILTRAP estableciendo correctamente los valores de las variables de entorno de EMAIL TESTING del backend, te llegará un email de confirmación al **sandbox** en Mailtrap. Debes confirmar la cuenta para que puedas comenzar a utilizarla.
 
 <p style="text-align: right;">[<a href="#readme-top">volver hacia arriba</a>]</p>
 
@@ -160,4 +170,7 @@ Texto
 [Typescript]: https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white
 [Javascript]: https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E
 [SASS]: https://img.shields.io/badge/Sass-CC6699?style=for-the-badge&logo=sass&logoColor=white
-[React-Query]: https://img.shields.io/badge/Microsoft_Office-D83B01?style=for-the-badge&logo=microsoft-office&logoColor=white
+[React-Query]: https://img.shields.io/badge/React_Query-FD5C23?style=for-the-badge&logo=tanstack&logoColor=white
+[React-Hook-Form]: https://img.shields.io/badge/React_Hook_Form-ec5990?style=for-the-badge&logoColor=white
+[BEM]: https://img.shields.io/badge/bem-d1d5db?style=for-the-badge&logoColor=white
+[ZOD]: https://img.shields.io/badge/zod-418bff?style=for-the-badge&logoColor=white
