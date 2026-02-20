@@ -11,7 +11,7 @@
 </div>
 
 <!-- TABLE OF CONTENTS -->
-<!-- <details>
+<details>
   <summary>Tabla de Contenidos</summary>
   <ol>
     <li>
@@ -25,11 +25,13 @@
       <ul>
         <li><a href="#prerrequisitos">Prerrequisitos</a></li>
         <li><a href="#instalación-del-proyecto-local">Instalación del Proyecto local</a></li>
-        <li><a href="#endpoints-de-la-api">Endpoints de la API</a></li>
       </ul>
     </li>
+    <li>
+      <a href="#uso">Uso</a>
+    </li>
   </ol>
-</details> -->
+</details>
 
 <!-- ABOUT THE PROJECT -->
 
@@ -159,6 +161,8 @@ http://localhost:7777/auth/register
 ```
 
 Una vez te registres, si configuraste MAILTRAP estableciendo correctamente los valores de las variables de entorno de EMAIL TESTING del backend, te llegará un email de confirmación al **sandbox** en Mailtrap. Debes confirmar la cuenta para que puedas comenzar a utilizarla.
+
+¡FELIZ USO!
 
 <p style="text-align: right;">[<a href="#readme-top">volver hacia arriba</a>]</p>
 
