@@ -28,7 +28,10 @@
       </ul>
     </li>
     <li>
-      <a href="#uso">Uso</a>
+      <a href="#uso-en-local">Uso en local</a>
+    </li>
+    <li>
+      <a href="#uso-de-la-demo-subida-en-vercel">Uso de la demo subida en Vercel</a>
     </li>
   </ol>
 </details>
@@ -146,7 +149,7 @@ Abre una terminal con permisos de administrador (recomendado) y realiza lo sigui
 
    Quiere decir que has instalado correctamente el proyecto en tu máquina y ya puedes utilizarlo.
 
-## Uso
+## Uso en local
 
 Para utilizar el proyecto que levantaste, ingresa al navegador web de tu gusto y en la barra de direcciones escribe:
 
@@ -161,6 +164,28 @@ http://localhost:7777/auth/register
 ```
 
 Una vez te registres, si configuraste MAILTRAP estableciendo correctamente los valores de las variables de entorno de EMAIL TESTING del backend, te llegará un email de confirmación al **sandbox** en Mailtrap. Debes confirmar la cuenta para que puedas comenzar a utilizarla.
+
+## Uso de la demo subida en Vercel
+
+Para usar la demo, en tu navegador debes ingresar a:
+
+[https://imperator-task.vercel.app/](https://imperator-task.vercel.app/)
+
+Los datos de los usuarios que puedes usar para probar la app son los siguientes:
+
+**USUARIO 1**:
+
+```
+email: john.smith@imperatortask.com
+password: 12345678
+```
+
+**USUARIO 2**:
+
+```
+email: anita.johnson@imperatortask.com
+password: 12345678
+```
 
 ¡FELIZ USO!
 
